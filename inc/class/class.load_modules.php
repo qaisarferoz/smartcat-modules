@@ -82,10 +82,10 @@ class SmartcatModulesLoader {
     public function register_widgets() {
         
         // Register all NON-CPT Widgets (always available)
-        register_widget( 'Smartcat_CTA_Widget' );
-        register_widget( 'Smartcat_Contact_Form_Widget' );
-        register_widget( 'Smartcat_Contact_Info_Widget' );
-        register_widget( 'Smartcat_Pricing_Table_Widget' );
+        // register_widget( 'Smartcat_CTA_Widget' );
+        // register_widget( 'Smartcat_Contact_Form_Widget' );
+        // register_widget( 'Smartcat_Contact_Info_Widget' );
+        // register_widget( 'Smartcat_Pricing_Table_Widget' );
         
         // Register remaining CPT Widgets (if enabled)
         

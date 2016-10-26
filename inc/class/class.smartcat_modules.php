@@ -111,7 +111,6 @@ class SmartcatModulesPlugin {
     /**
      * 
      * 
-     * 
      * @since 1.0
      */
     private function setup_modules() {
@@ -134,7 +133,7 @@ class SmartcatModulesPlugin {
 //            get_theme_mod( 'smartcat_toggle_contact_form', 'include' )    == 'exclude' ? null : 'contact_form',
 //            get_theme_mod( 'smartcat_toggle_contact_info', 'include' )    == 'exclude' ? null : 'contact_info',
 //            get_theme_mod( 'smartcat_toggle_events', 'include' )          == 'exclude' ? null : 'event',
-//            get_theme_mod( 'smartcat_toggle_faqs', 'include' )            == 'exclude' ? null : 'faq',
+            get_theme_mod( 'smartcat_toggle_faqs', 'include' )            == 'exclude' ? null : 'faq',
 //            get_theme_mod( 'smartcat_toggle_gallery', 'include' )         == 'exclude' ? null : 'gallery',
 //            get_theme_mod( 'smartcat_toggle_news', 'include' )            == 'exclude' ? null : 'news',
 //            get_theme_mod( 'smartcat_toggle_pricing_table', 'include' )   == 'exclude' ? null : 'pricing_table',
