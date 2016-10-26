@@ -38,18 +38,6 @@ class SmartcatModulesLoader {
         
         if ( !is_null( $this->modules ) ) :
             
-            if ( in_array( 'call-to-action', $this->modules ) ) :
-                include_once SMARTCAT_MODULES_PATH . 'inc/modules/cpt_call-to-action.php';
-            endif;
-            
-            if ( in_array( 'contact-form', $this->modules ) ) :
-                include_once SMARTCAT_MODULES_PATH . 'inc/modules/cpt_contact-form.php';
-            endif;
-            
-            if ( in_array( 'contact-info', $this->modules ) ) :
-                include_once SMARTCAT_MODULES_PATH . 'inc/modules/cpt_contact-info.php';
-            endif;
-            
             if ( in_array( 'event', $this->modules ) ) :
                 include_once SMARTCAT_MODULES_PATH . 'inc/modules/cpt_event.php';
             endif;
@@ -65,11 +53,7 @@ class SmartcatModulesLoader {
             if ( in_array( 'news', $this->modules ) ) :
                 include_once SMARTCAT_MODULES_PATH . 'inc/modules/cpt_news.php';
             endif;
-            
-            if ( in_array( 'pricing-table', $this->modules ) ) :
-                include_once SMARTCAT_MODULES_PATH . 'inc/modules/cpt_pricing-table.php';
-            endif;
-            
+                       
             if ( in_array( 'service', $this->modules ) ) :
                 include_once SMARTCAT_MODULES_PATH . 'inc/modules/cpt_service.php';
             endif;
@@ -97,17 +81,13 @@ class SmartcatModulesLoader {
      */
     public function register_widgets() {
         
-        if ( in_array( 'call_to_action', $this->modules ) ) :
-            register_widget( 'Smartcat_CTA_Widget' );
-        endif;
+        // Register all NON-CPT Widgets (always available)
+        register_widget( 'Smartcat_CTA_Widget' );
+        register_widget( 'Smartcat_Contact_Form_Widget' );
+        register_widget( 'Smartcat_Contact_Info_Widget' );
+        register_widget( 'Smartcat_Pricing_Table_Widget' );
         
-        if ( in_array( 'contact_form', $this->modules ) ) :
-            register_widget( 'Smartcat_Contact_Form_Widget' );
-        endif;
-        
-        if ( in_array( 'contact_info', $this->modules ) ) :
-            register_widget( 'Smartcat_Contact_Info_Widget' );
-        endif; 
+        // Register remaining CPT Widgets (if enabled)
         
         if ( in_array( 'event', $this->modules ) ) :
             register_widget( 'Smartcat_Events_Widget' );
@@ -125,10 +105,6 @@ class SmartcatModulesLoader {
             register_widget( 'Smartcat_News_Widget' );
         endif;
         
-        if ( in_array( 'pricing_table', $this->modules ) ) :
-            register_widget( 'Smartcat_Pricing_Table_Widget' );
-        endif;
-
         if ( in_array( 'testimonial', $this->modules ) ) :
             register_widget( 'Smartcat_Testimonials_Widget' );
         endif; 

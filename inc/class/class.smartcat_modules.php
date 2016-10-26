@@ -116,20 +116,32 @@ class SmartcatModulesPlugin {
      */
     private function setup_modules() {
 
-        $modules = new SmartcatModulesLoader( array (
+        $modules = new SmartcatModulesLoader( $this->get_theme_modules_array() );
+        
+    }
+    
+    /**
+     * Return an array of strings, one for each theme mod module that is enabled / toggled ON
+     * 
+     * @since 1.0
+     * @return array
+     */
+    private function get_theme_modules_array() {
+        
+        return array (
 
 //            get_theme_mod( 'smartcat_toggle_call_to_action', 'include' )  == 'exclude' ? null : 'call_to_action',
 //            get_theme_mod( 'smartcat_toggle_contact_form', 'include' )    == 'exclude' ? null : 'contact_form',
 //            get_theme_mod( 'smartcat_toggle_contact_info', 'include' )    == 'exclude' ? null : 'contact_info',
 //            get_theme_mod( 'smartcat_toggle_events', 'include' )          == 'exclude' ? null : 'event',
-            get_theme_mod( 'smartcat_toggle_faqs', 'include' )            == 'exclude' ? null : 'faq',
+//            get_theme_mod( 'smartcat_toggle_faqs', 'include' )            == 'exclude' ? null : 'faq',
 //            get_theme_mod( 'smartcat_toggle_gallery', 'include' )         == 'exclude' ? null : 'gallery',
 //            get_theme_mod( 'smartcat_toggle_news', 'include' )            == 'exclude' ? null : 'news',
 //            get_theme_mod( 'smartcat_toggle_pricing_table', 'include' )   == 'exclude' ? null : 'pricing_table',
 //            get_theme_mod( 'smartcat_toggle_service', 'include' )         == 'exclude' ? null : 'service',
 //            get_theme_mod( 'smartcat_toggle_testimonials', 'include' )    == 'exclude' ? null : 'testimonial',
             
-        ) );
+        );
         
     }
 
@@ -142,10 +154,39 @@ class SmartcatModulesPlugin {
      */
     public function create_dashboard_menu() {
         
+        $modules = $this->get_theme_modules_array();
+        
+        // Add the Main "Modules" menu item
         add_menu_page( 'Modules', 'Modules', 'manage_options', 'modules', array( $this, 'display_main_plugin_view' ), SMARTCAT_MODULES_URL . 'admin/felix_icon.png' );
+     
+        // Add all of the appropriate CPT module menu items that are enabled through Customizer
+        
+        if ( in_array( 'event', $modules ) ) :
+            add_submenu_page( 'modules', 'Events', 'Events', 'manage_options', 'edit.php?post_type=event', NULL );
+        endif;
+
+        if ( in_array( 'faq', $modules ) ) :
+            add_submenu_page( 'modules', 'FAQs', 'FAQs', 'manage_options', 'edit.php?post_type=faq', NULL );
+        endif;
+
+        if ( in_array( 'gallery', $modules ) ) :
+            add_submenu_page( 'modules', 'Gallery Items', 'Gallery Items', 'manage_options', 'edit.php?post_type=gallery', NULL );
+        endif;
+
+        if ( in_array( 'news', $modules ) ) :
+            add_submenu_page( 'modules', 'News', 'News', 'manage_options', 'edit.php?post_type=news', NULL );
+        endif;
+
+        if ( in_array( 'service', $modules ) ) :
+            add_submenu_page( 'modules', 'Services', 'Services', 'manage_options', 'edit.php?post_type=service', NULL );
+        endif;
+
+        if ( in_array( 'testimonial', $modules ) ) :
+            add_submenu_page( 'modules', 'Testimonials', 'Testimonials', 'manage_options', 'edit.php?post_type=testimonial', NULL );
+        endif;
         
     }
-
+    
     /**
      * 
      * Load CSS & JS for the admin dashboard
