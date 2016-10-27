@@ -5,99 +5,114 @@ class Smartcat_CTA_Widget extends WP_Widget {
     public function __construct() {
 
         parent::__construct(
-            'vivita-cta',
-            __( 'Vivita Call to Action', 'vivita' ),
+            'smartcat-module-cta',
+            __( 'Smartcat Call to Action', 'smartcat-modules' ),
             array(
-                    'classname'   => 'vivita-cta',
+                'classname'   => 'scmod-cta',
+                'description' => __( 'Output a Call to Action (CTA) Module', 'smartcat-modules' ),
             )
         );
 
     }
 
-    public function widget( $args, $instance ) { ?>
+    public function widget( $args, $instance ) { 
 
-        <div class="vivita-callout">
+        // IF WIDGET OUTPUT EXISTS IN THEME
+            // Load Widget Output from Theme
+        // ELSE 
+            // Output Module Default from inc/modules/views
+        // ENDIF
 
-            <h3 class="widget-title"><?php echo isset( $instance['vivita_cta_title'] ) && $instance['vivita_cta_title'] ? $instance['vivita_cta_title'] : ''; ?></h3>
-            <div class="diviver"><span></span></div>
-            <div class="textwidget"><?php echo isset( $instance['vivita_cta_detail'] ) && $instance['vivita_cta_detail'] ? $instance['vivita_cta_detail'] : ''; ?></div>
-            <div>
-                <?php if( isset( $instance['vivita_cta_button1_url'] ) && $instance['vivita_cta_button1_url'] ) : ?>
-                    <a class="vivita-button" href="<?php echo esc_url( $instance['vivita_cta_button1_url'] ); ?>"><?php echo isset( $instance['vivita_cta_button1_text'] ) ? $instance['vivita_cta_button1_text'] : ''; ?></a>
-                <?php endif; ?>
-                <?php if( isset( $instance['vivita_cta_button2_url'] ) && $instance['vivita_cta_button2_url'] ) : ?>
-                    <a class="vivita-button" href="<?php echo esc_url( $instance['vivita_cta_button2_url'] ); ?>"><?php echo isset( $instance['vivita_cta_button2_text'] ) ? $instance['vivita_cta_button2_text'] : ''; ?></a>
-                <?php endif; ?>
-            </div>
-
-        </div>
-
-
-    <?php }
+    }
 
     public function form( $instance ) {
 
+        $widths = array(
+            '3'     => '1/4',
+            '4'     => '1/3',
+            '6'     => '1/2',
+            '12'    => 'full'
+        );
+       
         // Set default values
         $instance = wp_parse_args( (array) $instance, array( 
-                'vivita_cta_title' => '',
-                'vivita_cta_detail' => '',
-                'vivita_cta_button1_text' => '',
-                'vivita_cta_button1_url' => '',
-                'vivita_cta_button2_text' => '',
-                'vivita_cta_button2_url' => '',
+            'scmod_cta_title'           => _( 'Call to Action', 'smartcat-modules'),
+            'scmod_cta_widget_width'    => 'full',
+            'scmod_cta_detail'          => _( 'Detail Text', 'smartcat-modules'),
+            'scmod_cta_btn_1_text'      => _( 'Button 1', 'smartcat-modules'),
+            'scmod_cta_btn_1_url'       => '#',
+            'scmod_cta_btn_2_text'      => _( 'Button 2', 'smartcat-modules'),
+            'scmod_cta_btn_2_url'       => '#',
         ) );
 
         // Retrieve an existing value from the database
-        $vivita_cta_title = !empty( $instance['vivita_cta_title'] ) ? $instance['vivita_cta_title'] : '';
-        $vivita_cta_detail = !empty( $instance['vivita_cta_detail'] ) ? $instance['vivita_cta_detail'] : '';
-        $vivita_cta_button1_text = !empty( $instance['vivita_cta_button1_text'] ) ? $instance['vivita_cta_button1_text'] : '';
-        $vivita_cta_button1_url = !empty( $instance['vivita_cta_button1_url'] ) ? $instance['vivita_cta_button1_url'] : '';
-        $vivita_cta_button2_text = !empty( $instance['vivita_cta_button2_text'] ) ? $instance['vivita_cta_button2_text'] : '';
-        $vivita_cta_button2_url = !empty( $instance['vivita_cta_button2_url'] ) ? $instance['vivita_cta_button2_url'] : '';
-
-        // Form fields
+        $scmod_cta_title        = !empty( $instance['scmod_cta_title'] ) ? $instance['scmod_cta_title'] : _( 'Call to Action', 'smartcat-modules');
+        $scmod_cta_widget_width = !empty( $instance['scmod_cta_widget_width'] ) ? $instance['scmod_cta_widget_width'] : 'full';
+        $scmod_cta_detail       = !empty( $instance['scmod_cta_detail'] ) ? $instance['scmod_cta_detail'] : _( 'Detail Text', 'smartcat-modules');
+        $scmod_cta_btn_1_text   = !empty( $instance['scmod_cta_btn_1_text'] ) ? $instance['scmod_cta_btn_1_text'] : _( 'Button 1', 'smartcat-modules');
+        $scmod_cta_btn_1_url    = !empty( $instance['scmod_cta_btn_1_url'] ) ? $instance['scmod_cta_btn_1_url'] : '#';
+        $scmod_cta_btn_2_text   = !empty( $instance['scmod_cta_btn_2_text'] ) ? $instance['scmod_cta_btn_2_text'] : _( 'Button 2', 'smartcat-modules');
+        $scmod_cta_btn_2_url    = !empty( $instance['scmod_cta_btn_2_url'] ) ? $instance['scmod_cta_btn_2_url'] : '#';
+        
+        // Title - Text
         echo '<p>';
-        echo '	<label for="' . $this->get_field_id( 'vivita_cta_title' ) . '" class="vivita_cta_title_label">' . __( 'Title', 'vivita' ) . '</label>';
-        echo '	<input type="text" id="' . $this->get_field_id( 'vivita_cta_title' ) . '" name="' . $this->get_field_name( 'vivita_cta_title' ) . '" class="widefat" placeholder="' . esc_attr__( '', 'vivita' ) . '" value="' . esc_attr( $vivita_cta_title ) . '">';
+        echo '	<label for="' . $this->get_field_id( 'scmod_cta_title' ) . '" class="scmod_cta_title_label">' . __( 'Title', 'smartcat-modules' ) . '</label>';
+        echo '	<input type="text" id="' . $this->get_field_id( 'scmod_cta_title' ) . '" name="' . $this->get_field_name( 'scmod_cta_title' ) . '" class="widefat" placeholder="' . esc_attr__( 'Title', 'smartcat-modules' ) . '" value="' . esc_attr( $scmod_cta_title ) . '">';
         echo '</p>';
 
+        // Widget Width - Select/Option
         echo '<p>';
-        echo '	<label for="' . $this->get_field_id( 'vivita_cta_detail' ) . '" class="vivita_cta_detail_label">' . __( 'Details', 'vivita' ) . '</label>';
-        echo '	<textarea id="' . $this->get_field_id( 'vivita_cta_detail' ) . '" name="' . $this->get_field_name( 'vivita_cta_detail' ) . '" class="widefat" placeholder="' . esc_attr__( '', 'vivita' ) . '">' . $vivita_cta_detail . '</textarea>';
+        echo '	<label for="' . $this->get_field_id( 'scmod_cta_widget_width' ) . '" class="scmod_cta_widget_width_label">' . __( 'Widget Width', 'smartcat-modules' ) . '</label>';
+        echo '	<select id="' . $this->get_field_id( 'scmod_cta_widget_width' ) . '" name="' . $this->get_field_name( 'scmod_cta_widget_width' ) . '" class="widefat">';
+            foreach( $widths as $key => $value ) :
+                echo '<option value="' . $key . '" ' . selected( $scmod_cta_widget_width, $key, false ) . '> ' . $value . '</option>';
+            endforeach;
+        echo '	</select>';
         echo '</p>';
 
+        // Detail Text - Text
         echo '<p>';
-        echo '	<label for="' . $this->get_field_id( 'vivita_cta_button1_text' ) . '" class="vivita_cta_button1_text_label">' . __( 'Button 1 Text', 'vivita' ) . '</label>';
-        echo '	<input type="text" id="' . $this->get_field_id( 'vivita_cta_button1_text' ) . '" name="' . $this->get_field_name( 'vivita_cta_button1_text' ) . '" class="widefat" placeholder="' . esc_attr__( '', 'vivita' ) . '" value="' . esc_attr( $vivita_cta_button1_text ) . '">';
+        echo '	<label for="' . $this->get_field_id( 'scmod_cta_detail' ) . '" class="scmod_cta_detail_label">' . __( 'Detail Text', 'smartcat-modules' ) . '</label>';
+        echo '	<input type="text" id="' . $this->get_field_id( 'scmod_cta_detail' ) . '" name="' . $this->get_field_name( 'scmod_cta_detail' ) . '" class="widefat" placeholder="' . esc_attr__( 'Detail Text', 'smartcat-modules' ) . '" value="' . esc_attr( $scmod_cta_detail ) . '">';
         echo '</p>';
-
+        
+        // Button 1 - Text
         echo '<p>';
-        echo '	<label for="' . $this->get_field_id( 'vivita_cta_button1_url' ) . '" class="vivita_cta_button1_url_label">' . __( 'Button 1 URL', 'vivita' ) . '</label>';
-        echo '	<input type="url" id="' . $this->get_field_id( 'vivita_cta_button1_url' ) . '" name="' . $this->get_field_name( 'vivita_cta_button1_url' ) . '" class="widefat" placeholder="' . esc_attr__( '', 'vivita' ) . '" value="' . esc_attr( $vivita_cta_button1_url ) . '">';
+        echo '	<label for="' . $this->get_field_id( 'scmod_cta_btn_1_text' ) . '" class="scmod_cta_btn_1_text_label">' . __( 'Button 1 - Text', 'smartcat-modules' ) . '</label>';
+        echo '	<input type="text" id="' . $this->get_field_id( 'scmod_cta_btn_1_text' ) . '" name="' . $this->get_field_name( 'scmod_cta_btn_1_text' ) . '" class="widefat" placeholder="' . esc_attr__( 'Button 1 - Text', 'smartcat-modules' ) . '" value="' . esc_attr( $scmod_cta_btn_1_text ) . '">';
         echo '</p>';
-
+        
+        // Button 1 - URL
         echo '<p>';
-        echo '	<label for="' . $this->get_field_id( 'vivita_cta_button2_text' ) . '" class="vivita_cta_button2_text_label">' . __( 'Button 2 Text', 'vivita' ) . '</label>';
-        echo '	<input type="text" id="' . $this->get_field_id( 'vivita_cta_button2_text' ) . '" name="' . $this->get_field_name( 'vivita_cta_button2_text' ) . '" class="widefat" placeholder="' . esc_attr__( '', 'vivita' ) . '" value="' . esc_attr( $vivita_cta_button2_text ) . '">';
+        echo '	<label for="' . $this->get_field_id( 'scmod_cta_btn_1_url' ) . '" class="scmod_cta_btn_1_url_label">' . __( 'Button 1 - URL', 'smartcat-modules' ) . '</label>';
+        echo '	<input type="url" id="' . $this->get_field_id( 'scmod_cta_btn_1_url' ) . '" name="' . $this->get_field_name( 'scmod_cta_btn_1_url' ) . '" class="widefat" placeholder="' . esc_attr__( 'Button 1 - URL', 'smartcat-modules' ) . '" value="' . esc_attr( $scmod_cta_btn_1_url ) . '">';
         echo '</p>';
-
+        
+        // Button 2 - Text
         echo '<p>';
-        echo '	<label for="' . $this->get_field_id( 'vivita_cta_button2_url' ) . '" class="vivita_cta_button2_url_label">' . __( 'Button 2 URL', 'vivita' ) . '</label>';
-        echo '	<input type="url" id="' . $this->get_field_id( 'vivita_cta_button2_url' ) . '" name="' . $this->get_field_name( 'vivita_cta_button2_url' ) . '" class="widefat" placeholder="' . esc_attr__( '', 'vivita' ) . '" value="' . esc_attr( $vivita_cta_button2_url ) . '">';
+        echo '	<label for="' . $this->get_field_id( 'scmod_cta_btn_2_text' ) . '" class="scmod_cta_btn_2_text_label">' . __( 'Button 2 - Text', 'smartcat-modules' ) . '</label>';
+        echo '	<input type="text" id="' . $this->get_field_id( 'scmod_cta_btn_2_text' ) . '" name="' . $this->get_field_name( 'scmod_cta_btn_2_text' ) . '" class="widefat" placeholder="' . esc_attr__( 'Button 2 - Text', 'smartcat-modules' ) . '" value="' . esc_attr( $scmod_cta_btn_2_text ) . '">';
         echo '</p>';
-
+        
+        // Button 2 - URL
+        echo '<p>';
+        echo '	<label for="' . $this->get_field_id( 'scmod_cta_btn_2_url' ) . '" class="scmod_cta_btn_2_url_label">' . __( 'Button 2 - URL', 'smartcat-modules' ) . '</label>';
+        echo '	<input type="url" id="' . $this->get_field_id( 'scmod_cta_btn_2_url' ) . '" name="' . $this->get_field_name( 'scmod_cta_btn_2_url' ) . '" class="widefat" placeholder="' . esc_attr__( 'Button 2 - URL', 'smartcat-modules' ) . '" value="' . esc_attr( $scmod_cta_btn_2_url ) . '">';
+        echo '</p>';
+        
     }
 
     public function update( $new_instance, $old_instance ) {
 
         $instance = $old_instance;
 
-        $instance['vivita_cta_title'] = !empty( $new_instance['vivita_cta_title'] ) ? strip_tags( $new_instance['vivita_cta_title'] ) : '';
-        $instance['vivita_cta_detail'] = !empty( $new_instance['vivita_cta_detail'] ) ? strip_tags( $new_instance['vivita_cta_detail'] ) : '';
-        $instance['vivita_cta_button1_text'] = !empty( $new_instance['vivita_cta_button1_text'] ) ? strip_tags( $new_instance['vivita_cta_button1_text'] ) : '';
-        $instance['vivita_cta_button1_url'] = !empty( $new_instance['vivita_cta_button1_url'] ) ? strip_tags( $new_instance['vivita_cta_button1_url'] ) : '';
-        $instance['vivita_cta_button2_text'] = !empty( $new_instance['vivita_cta_button2_text'] ) ? strip_tags( $new_instance['vivita_cta_button2_text'] ) : '';
-        $instance['vivita_cta_button2_url'] = !empty( $new_instance['vivita_cta_button2_url'] ) ? strip_tags( $new_instance['vivita_cta_button2_url'] ) : '';
+        $instance['scmod_cta_title']        = !empty( $new_instance['scmod_cta_title'] ) ? strip_tags( $new_instance['scmod_cta_title'] ) : _( 'Call to Action', 'smartcat-modules');
+        $instance['scmod_cta_widget_width'] = !empty( $new_instance['scmod_cta_widget_width'] ) ? strip_tags( $new_instance['scmod_cta_widget_width'] ) : 'full';
+        $instance['scmod_cta_detail']       = !empty( $new_instance['scmod_cta_detail'] ) ? strip_tags( $new_instance['scmod_cta_detail'] ) : _( 'Detail Text', 'smartcat-modules');
+        $instance['scmod_cta_btn_1_text']   = !empty( $new_instance['scmod_cta_btn_1_text'] ) ? strip_tags( $new_instance['scmod_cta_btn_1_text'] ) : _( 'Button 1', 'smartcat-modules'); 
+        $instance['scmod_cta_btn_1_url']    = !empty( $new_instance['scmod_cta_btn_1_url'] ) ? strip_tags( $new_instance['scmod_cta_btn_1_url'] ) : '#';
+        $instance['scmod_cta_btn_2_text']   = !empty( $new_instance['scmod_cta_btn_2_text'] ) ? strip_tags( $new_instance['scmod_cta_btn_2_text'] ) : _( 'Button 2', 'smartcat-modules');
+        $instance['scmod_cta_btn_2_url']    = !empty( $new_instance['scmod_cta_btn_2_url'] ) ? strip_tags( $new_instance['scmod_cta_btn_2_url'] ) : '#';
 
         return $instance;
 

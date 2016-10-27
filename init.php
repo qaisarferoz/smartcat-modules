@@ -29,14 +29,14 @@ if ( !defined( 'SMARTCAT_MODULES_PATH' ) )
 if ( !defined( 'SMARTCAT_MODULES_URL' ) )
     define( 'SMARTCAT_MODULES_URL' , plugin_dir_url( __FILE__ ) );
 
-// Include all class files
+// Include all general class files
 foreach( glob( SMARTCAT_MODULES_PATH . 'inc/class/*.php' ) as $file ) :
     require_once $file;
 endforeach;
 
-// Include all class files
-foreach( glob( SMARTCAT_MODULES_PATH . 'inc/modules/widgets/*.php' ) as $file ) :
-    require_once $file;
+// Include all Widget Class files
+foreach( glob( SMARTCAT_MODULES_PATH . 'inc/modules/widgets/*.php' ) as $widget_class_file ) :
+    require_once $widget_class_file;
 endforeach;
 
 // Activation & deactivation Hooks
