@@ -6,18 +6,21 @@ class SmartcatModulesPlugin {
     const VERSION = 1.0;
 
     private static $instance; 
+    private $modules;
     private $options;
 
     /**
      * Initial Instantiation
      * 
      * @since 1.0
+     * @return void
      */
-    public static function instance() {
+    public static function instance( $modules = null ) {
 
         if ( !self::$instance ) :
 
             self::$instance = new self;
+            self::$instance->set_modules( $modules );
             self::$instance->get_options();
             self::$instance->add_hooks();
             self::$instance->setup_modules();
@@ -27,7 +30,6 @@ class SmartcatModulesPlugin {
     }
 
     /**
-     * 
      * Runs when the plugin has been activated
      * 
      * @since 1.0
@@ -58,7 +60,6 @@ class SmartcatModulesPlugin {
     }
 
     /**
-     * 
      * Runs when the plugin is de-activated
      * 
      * @since 1.0
@@ -77,11 +78,22 @@ class SmartcatModulesPlugin {
     }
 
     /**
+     * Sets the class modules list property
+     * 
+     * @since 1.0
+     * @return void
+     */
+    private function set_modules( $modules = null ) {
+
+        $this->modules = $modules; 
+
+    }
+
+    /**
      * Updates the class options parameter from the settings stored in WP
      * 
      * @since 1.0
      * @return void
-     * 
      */
     private function get_options() {
 
@@ -109,43 +121,19 @@ class SmartcatModulesPlugin {
     }
 
     /**
-     * 
+     * Set up the modules based on the list of module strings
      * 
      * @since 1.0
+     * @return void
      */
     private function setup_modules() {
 
-        $modules = new SmartcatModulesLoader( $this->get_theme_modules_array() );
-        
-    }
-    
-    /**
-     * Return an array of strings, one for each theme mod module that is enabled / toggled ON
-     * 
-     * @since 1.0
-     * @return array
-     */
-    private function get_theme_modules_array() {
-        
-        return array (
-
-//            get_theme_mod( 'smartcat_toggle_call_to_action', 'include' )  == 'exclude' ? null : 'call_to_action',
-//            get_theme_mod( 'smartcat_toggle_contact_form', 'include' )    == 'exclude' ? null : 'contact_form',
-//            get_theme_mod( 'smartcat_toggle_contact_info', 'include' )    == 'exclude' ? null : 'contact_info',
-//            get_theme_mod( 'smartcat_toggle_events', 'include' )          == 'exclude' ? null : 'event',
-            get_theme_mod( 'smartcat_toggle_faqs', 'include' )            == 'exclude' ? null : 'faq',
-//            get_theme_mod( 'smartcat_toggle_gallery', 'include' )         == 'exclude' ? null : 'gallery',
-//            get_theme_mod( 'smartcat_toggle_news', 'include' )            == 'exclude' ? null : 'news',
-//            get_theme_mod( 'smartcat_toggle_pricing_table', 'include' )   == 'exclude' ? null : 'pricing_table',
-//            get_theme_mod( 'smartcat_toggle_service', 'include' )         == 'exclude' ? null : 'service',
-//            get_theme_mod( 'smartcat_toggle_testimonials', 'include' )    == 'exclude' ? null : 'testimonial',
-            
-        );
-        
+        if ( !is_null( $this->modules ) ) :
+            new SmartcatModulesLoader( $this->modules, self::VERSION );
+        endif; 
     }
 
     /**
-     * 
      * Creates the plugin's Dashboard menu
      * 
      * @since 1.0
@@ -153,41 +141,42 @@ class SmartcatModulesPlugin {
      */
     public function create_dashboard_menu() {
         
-        $modules = $this->get_theme_modules_array();
+        if ( !is_null( $this->modules ) ) :
         
-        // Add the Main "Modules" menu item
-        add_menu_page( 'Modules', 'Modules', 'manage_options', 'modules', array( $this, 'display_main_plugin_view' ), SMARTCAT_MODULES_URL . 'admin/felix_icon.png' );
-     
-        // Add all of the appropriate CPT module menu items that are enabled through Customizer
-        
-        if ( in_array( 'event', $modules ) ) :
-            add_submenu_page( 'modules', 'Events', 'Events', 'manage_options', 'edit.php?post_type=event', NULL );
-        endif;
+            // Add the Main "Modules" menu item
+            add_menu_page( 'Modules', 'Modules', 'manage_options', 'modules', array( $this, 'display_main_plugin_view' ), 'dashicons-layout' );
 
-        if ( in_array( 'faq', $modules ) ) :
-            add_submenu_page( 'modules', 'FAQs', 'FAQs', 'manage_options', 'edit.php?post_type=faq', NULL );
-        endif;
+            // Add all of the appropriate CPT module menu items that are enabled through Customizer
 
-        if ( in_array( 'gallery', $modules ) ) :
-            add_submenu_page( 'modules', 'Gallery Items', 'Gallery Items', 'manage_options', 'edit.php?post_type=gallery', NULL );
-        endif;
+            if ( in_array( 'event', $this->modules ) ) :
+                add_submenu_page( 'modules', 'Events', 'Events', 'manage_options', 'edit.php?post_type=event', NULL );
+            endif;
 
-        if ( in_array( 'news', $modules ) ) :
-            add_submenu_page( 'modules', 'News', 'News', 'manage_options', 'edit.php?post_type=news', NULL );
-        endif;
+            if ( in_array( 'faq', $this->modules ) ) :
+                add_submenu_page( 'modules', 'FAQs', 'FAQs', 'manage_options', 'edit.php?post_type=faq', NULL );
+            endif;
 
-        if ( in_array( 'service', $modules ) ) :
-            add_submenu_page( 'modules', 'Services', 'Services', 'manage_options', 'edit.php?post_type=service', NULL );
-        endif;
+            if ( in_array( 'gallery', $this->modules ) ) :
+                add_submenu_page( 'modules', 'Gallery Items', 'Gallery Items', 'manage_options', 'edit.php?post_type=gallery', NULL );
+            endif;
 
-        if ( in_array( 'testimonial', $modules ) ) :
-            add_submenu_page( 'modules', 'Testimonials', 'Testimonials', 'manage_options', 'edit.php?post_type=testimonial', NULL );
+            if ( in_array( 'job', $this->modules ) ) :
+                add_submenu_page( 'modules', 'Jobs', 'Jobs', 'manage_options', 'edit.php?post_type=job', NULL );
+            endif;
+
+            if ( in_array( 'news', $this->modules ) ) :
+                add_submenu_page( 'modules', 'News', 'News', 'manage_options', 'edit.php?post_type=news', NULL );
+            endif;
+
+            if ( in_array( 'testimonial', $this->modules ) ) :
+                add_submenu_page( 'modules', 'Testimonials', 'Testimonials', 'manage_options', 'edit.php?post_type=testimonial', NULL );
+            endif;
+            
         endif;
         
     }
     
     /**
-     * 
      * Load CSS & JS for the admin dashboard
      * 
      * @since 1.0
@@ -213,7 +202,6 @@ class SmartcatModulesPlugin {
     }
 
     /**
-     * 
      * Load CSS & JS for the front-end
      * 
      * @since 1.0
@@ -227,7 +215,6 @@ class SmartcatModulesPlugin {
     }
 
     /**
-     * 
      * Loads the plugin's main admin page
      * 
      * @since 1.0
@@ -240,7 +227,6 @@ class SmartcatModulesPlugin {
     }
     
     /**
-     * 
      * Loads the plugin's main documentation page
      * 
      * @since 1.0

@@ -60,4 +60,4 @@ function smartcat_modules_localize() {
 add_action( 'init', 'smartcat_modules_localize' );
 
 // Call the plugin class static method, instance()
-SmartcatModulesPlugin::instance();
+//SmartcatModulesPlugin::instance();

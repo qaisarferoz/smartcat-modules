@@ -2,17 +2,20 @@
 
 class SmartcatModulesLoader {
     
-    private $modules = null;
-    private $status = true;
+    private $modules;
+    private $version;
     
     /**
      * Constructor for the Module loader
      * 
      * @since 1.0
+     * @return void
      */
-    public function __construct( $args = null ) {
+    public function __construct( $modules = null, $version = null ) {
 
-        $this->modules = $args;
+        $this->modules = $modules;
+        $this->version = $version;
+        
         $this->add_hooks();
         $this->check_modules();
         
@@ -22,10 +25,28 @@ class SmartcatModulesLoader {
      * Hook references go here
      * 
      * @since 1.0
+     * @return void
      */
     private function add_hooks() {
+
+        add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_module_styles_scripts' ) );
         
-        // ...
+    }
+    
+    /**
+     * Load CSS & JS required for the Modules
+     * 
+     * @since 1.0
+     * @return void
+     */
+    public function enqueue_module_styles_scripts() {
+        
+        if ( in_array( 'gallery', $this->modules ) ) :
+            
+            wp_enqueue_style( 'unite', SMARTCAT_MODULES_URL . 'inc/assets/styles/unite-gallery.css', array(), $this->version );
+            wp_enqueue_script('unite-js', SMARTCAT_MODULES_URL . 'inc/assets/scripts/unite.min.js', array('jquery'), $this->version, true);
+        
+        endif;
         
     }
     
@@ -33,6 +54,7 @@ class SmartcatModulesLoader {
      * Check the desired Modules and set them up
      * 
      * @since 1.0
+     * @return void
      */
     public function check_modules() {
         
@@ -49,13 +71,13 @@ class SmartcatModulesLoader {
             if ( in_array( 'gallery', $this->modules ) ) :
                 include_once SMARTCAT_MODULES_PATH . 'inc/modules/cpt_gallery.php';
             endif;
+
+            if ( in_array( 'job', $this->modules ) ) :
+                include_once SMARTCAT_MODULES_PATH . 'inc/modules/cpt_job.php';
+            endif;
             
             if ( in_array( 'news', $this->modules ) ) :
                 include_once SMARTCAT_MODULES_PATH . 'inc/modules/cpt_news.php';
-            endif;
-                       
-            if ( in_array( 'service', $this->modules ) ) :
-                include_once SMARTCAT_MODULES_PATH . 'inc/modules/cpt_service.php';
             endif;
             
             if ( in_array( 'testimonial', $this->modules ) ) :
@@ -82,10 +104,11 @@ class SmartcatModulesLoader {
     public function register_widgets() {
         
         // Register all NON-CPT Widgets (always available)
-        // register_widget( 'Smartcat_CTA_Widget' );
-        // register_widget( 'Smartcat_Contact_Form_Widget' );
-        // register_widget( 'Smartcat_Contact_Info_Widget' );
-        // register_widget( 'Smartcat_Pricing_Table_Widget' );
+        
+        register_widget( 'Smartcat_CTA_Widget' );
+        register_widget( 'Smartcat_Contact_Form_Widget' );
+        register_widget( 'Smartcat_Contact_Info_Widget' );
+        register_widget( 'Smartcat_Pricing_Table_Widget' );
         
         // Register remaining CPT Widgets (if enabled)
         
@@ -101,6 +124,10 @@ class SmartcatModulesLoader {
             register_widget( 'Smartcat_Gallery_Widget' );
         endif;
         
+        if ( in_array( 'job', $this->modules ) ) :
+            register_widget( 'Smartcat_Jobs_Widget' );
+        endif;
+        
         if ( in_array( 'news', $this->modules ) ) :
             register_widget( 'Smartcat_News_Widget' );
         endif;
@@ -108,22 +135,6 @@ class SmartcatModulesLoader {
         if ( in_array( 'testimonial', $this->modules ) ) :
             register_widget( 'Smartcat_Testimonials_Widget' );
         endif; 
-        
-        if ( in_array( 'service', $this->modules ) ) :
-            register_widget( 'Smartcat_Service_Widget' );
-        endif;
-        
-    }
-    
-    /**
-     * Check the status
-     * 
-     * @since 1.0
-     * @return boolean Status
-     */
-    public function check_load_status() {
-    
-        return $this->status;
         
     }
     
