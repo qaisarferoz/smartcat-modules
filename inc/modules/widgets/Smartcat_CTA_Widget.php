@@ -31,7 +31,7 @@ class Smartcat_CTA_Widget extends WP_Widget {
             '3'     => '1/4',
             '4'     => '1/3',
             '6'     => '1/2',
-            '12'    => 'full'
+            '12'    => __( 'Full', 'smartcat-modules' ),
         );
        
         // Set default values
@@ -46,9 +46,9 @@ class Smartcat_CTA_Widget extends WP_Widget {
         ) );
 
         // Retrieve an existing value from the database
-        $scmod_cta_title        = !empty( $instance['scmod_cta_title'] ) ? $instance['scmod_cta_title'] : __( 'Call to Action', 'smartcat-modules');
+        $scmod_cta_title        = !empty( $instance['scmod_cta_title'] ) ? $instance['scmod_cta_title'] : '';
         $scmod_cta_widget_width = !empty( $instance['scmod_cta_widget_width'] ) ? $instance['scmod_cta_widget_width'] : '12';
-        $scmod_cta_detail       = !empty( $instance['scmod_cta_detail'] ) ? $instance['scmod_cta_detail'] : __( 'Detail Text', 'smartcat-modules');
+        $scmod_cta_detail       = !empty( $instance['scmod_cta_detail'] ) ? $instance['scmod_cta_detail'] : '';
         $scmod_cta_btn_1_text   = !empty( $instance['scmod_cta_btn_1_text'] ) ? $instance['scmod_cta_btn_1_text'] : '';
         $scmod_cta_btn_1_url    = !empty( $instance['scmod_cta_btn_1_url'] ) ? $instance['scmod_cta_btn_1_url'] : '';
         $scmod_cta_btn_2_text   = !empty( $instance['scmod_cta_btn_2_text'] ) ? $instance['scmod_cta_btn_2_text'] : '';
@@ -106,9 +106,9 @@ class Smartcat_CTA_Widget extends WP_Widget {
 
         $instance = $old_instance;
 
-        $instance['scmod_cta_title']        = !empty( $new_instance['scmod_cta_title'] ) ? strip_tags( $new_instance['scmod_cta_title'] ) : __( 'Call to Action', 'smartcat-modules');
+        $instance['scmod_cta_title']        = !empty( $new_instance['scmod_cta_title'] ) ? strip_tags( $new_instance['scmod_cta_title'] ) : '';
         $instance['scmod_cta_widget_width'] = !empty( $new_instance['scmod_cta_widget_width'] ) ? strip_tags( $new_instance['scmod_cta_widget_width'] ) : '12';
-        $instance['scmod_cta_detail']       = !empty( $new_instance['scmod_cta_detail'] ) ? strip_tags( $new_instance['scmod_cta_detail'] ) : __( 'Detail Text', 'smartcat-modules');
+        $instance['scmod_cta_detail']       = !empty( $new_instance['scmod_cta_detail'] ) ? strip_tags( $new_instance['scmod_cta_detail'] ) : '';
         $instance['scmod_cta_btn_1_text']   = !empty( $new_instance['scmod_cta_btn_1_text'] ) ? strip_tags( $new_instance['scmod_cta_btn_1_text'] ) : '';
         $instance['scmod_cta_btn_1_url']    = !empty( $new_instance['scmod_cta_btn_1_url'] ) ? strip_tags( $new_instance['scmod_cta_btn_1_url'] ) : '';
         $instance['scmod_cta_btn_2_text']   = !empty( $new_instance['scmod_cta_btn_2_text'] ) ? strip_tags( $new_instance['scmod_cta_btn_2_text'] ) : '';

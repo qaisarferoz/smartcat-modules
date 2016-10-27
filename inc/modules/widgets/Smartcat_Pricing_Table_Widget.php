@@ -31,13 +31,13 @@ class Smartcat_Pricing_Table_Widget extends WP_Widget {
             '3'     => '1/4',
             '4'     => '1/3',
             '6'     => '1/2',
-            '12'    => 'full'
+            '12'    => __( 'Full', 'smartcat-modules' ),
         );
        
         // Set default values
         $instance = wp_parse_args( (array) $instance, array( 
             'scmod_pricing_table_title'         => __( 'Pricing Table', 'smartcat-modules'),
-            'scmod_pricing_table_width'         => '12',
+            'scmod_pricing_table_width'         => '4',
             'scmod_pricing_table_detail'        => __( 'Detail Text', 'smartcat-modules'),
             'scmod_pricing_table_is_special'    => '',
             'scmod_pricing_table_price'         => '',
@@ -45,9 +45,9 @@ class Smartcat_Pricing_Table_Widget extends WP_Widget {
         ) );
 
         // Retrieve an existing value from the database
-        $scmod_pricing_table_title       = !empty( $instance['scmod_pricing_table_title'] ) ? $instance['scmod_pricing_table_title'] : __( 'Pricing Table', 'smartcat-modules');
-        $scmod_pricing_table_width       = !empty( $instance['scmod_pricing_table_width'] ) ? $instance['scmod_pricing_table_width'] : '12';
-        $scmod_pricing_table_detail      = !empty( $instance['scmod_pricing_table_detail'] ) ? $instance['scmod_pricing_table_detail'] : __( 'Detail Text', 'smartcat-modules');
+        $scmod_pricing_table_title       = !empty( $instance['scmod_pricing_table_title'] ) ? $instance['scmod_pricing_table_title'] : '';
+        $scmod_pricing_table_width       = !empty( $instance['scmod_pricing_table_width'] ) ? $instance['scmod_pricing_table_width'] : '4';
+        $scmod_pricing_table_detail      = !empty( $instance['scmod_pricing_table_detail'] ) ? $instance['scmod_pricing_table_detail'] : '';
         $scmod_pricing_table_is_special  = !empty( $instance['scmod_pricing_table_is_special'] ) ? $instance['scmod_pricing_table_is_special'] : '';
         $scmod_pricing_table_price       = !empty( $instance['scmod_pricing_table_price'] ) ? $instance['scmod_pricing_table_price'] : '';
         $scmod_pricing_table_description = !empty( $instance['scmod_pricing_table_description'] ) ? $instance['scmod_pricing_table_description'] : '';
@@ -71,7 +71,7 @@ class Smartcat_Pricing_Table_Widget extends WP_Widget {
         // Detail Text - Text
         echo '<p>';
         echo '	<label for="' . $this->get_field_id( 'scmod_pricing_table_detail' ) . '" class="scmod_pricing_table_detail_label">' . __( 'Detail Text', 'smartcat-modules' ) . '</label>';
-        echo '	<input type="text" id="' . $this->get_field_id( 'scmod_pricing_table_detail' ) . '" name="' . $this->get_field_name( 'scmod_pricing_table_detail' ) . '" class="widefat" placeholder="' . esc_attr__( 'Detail Text', 'smartcat-modules' ) . '" value="' . esc_attr( $scmod_pricing_table_detail ) . '">';
+        echo '	<input type="text" id="' . $this->get_field_id( 'scmod_pricing_table_detail' ) . '" name="' . $this->get_field_name( 'scmod_pricing_table_detail' ) . '" class="widefat" placeholder="' . esc_attr__( '', 'smartcat-modules' ) . '" value="' . esc_attr( $scmod_pricing_table_detail ) . '">';
         echo '</p>';
         
         // Is Special? - Checkbox
@@ -99,9 +99,9 @@ class Smartcat_Pricing_Table_Widget extends WP_Widget {
 
         $instance = $old_instance;
 
-        $instance['scmod_pricing_table_title']   = !empty( $new_instance['scmod_pricing_table_title'] ) ? strip_tags( $new_instance['scmod_pricing_table_title'] ) : __( 'Pricing Table', 'smartcat-modules');
-        $instance['scmod_pricing_table_width']   = !empty( $new_instance['scmod_pricing_table_width'] ) ? strip_tags( $new_instance['scmod_pricing_table_width'] ) : '12';
-        $instance['scmod_pricing_table_detail']  = !empty( $new_instance['scmod_pricing_table_detail'] ) ? strip_tags( $new_instance['scmod_pricing_table_detail'] ) : __( 'Detail Text', 'smartcat-modules');
+        $instance['scmod_pricing_table_title']   = !empty( $new_instance['scmod_pricing_table_title'] ) ? strip_tags( $new_instance['scmod_pricing_table_title'] ) : '';
+        $instance['scmod_pricing_table_width']   = !empty( $new_instance['scmod_pricing_table_width'] ) ? strip_tags( $new_instance['scmod_pricing_table_width'] ) : '4';
+        $instance['scmod_pricing_table_detail']  = !empty( $new_instance['scmod_pricing_table_detail'] ) ? strip_tags( $new_instance['scmod_pricing_table_detail'] ) : '';
         $instance['scmod_pricing_table_is_special']   = !empty( $new_instance['scmod_pricing_table_is_special'] ) ? strip_tags( $new_instance['scmod_pricing_table_is_special'] ) : '';
         $instance['scmod_pricing_table_price']   = !empty( $new_instance['scmod_pricing_table_price'] ) ? strip_tags( $new_instance['scmod_pricing_table_price'] ) : '';
         $instance['scmod_pricing_table_description'] = !empty( $new_instance['scmod_pricing_table_description'] ) ? strip_tags( $new_instance['scmod_pricing_table_description'] ) : '';

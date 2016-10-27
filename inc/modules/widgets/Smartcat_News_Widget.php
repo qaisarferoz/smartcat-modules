@@ -29,7 +29,7 @@ class Smartcat_News_Widget extends WP_Widget {
 
         $widths = array(
             '6'     => '1/2',
-            '12'    => 'full'
+            '12'    => __( 'Full', 'smartcat-modules' ),
         );
        
         // Set default values
@@ -40,7 +40,7 @@ class Smartcat_News_Widget extends WP_Widget {
         ) );
 
         // Retrieve an existing value from the database
-        $scmod_news_title        = !empty( $instance['scmod_news_title'] ) ? $instance['scmod_news_title'] : __( 'News', 'smartcat-modules');
+        $scmod_news_title        = !empty( $instance['scmod_news_title'] ) ? $instance['scmod_news_title'] : '';
         $scmod_news_widget_width = !empty( $instance['scmod_news_widget_width'] ) ? $instance['scmod_news_widget_width'] : '12';
         $scmod_news_limit        = !empty( $instance['scmod_news_limit'] ) ? $instance['scmod_news_limit'] : '-1';
         
@@ -72,7 +72,7 @@ class Smartcat_News_Widget extends WP_Widget {
 
         $instance = $old_instance;
 
-        $instance['scmod_news_title']           = !empty( $new_instance['scmod_news_title'] ) ? strip_tags( $new_instance['scmod_news_title'] ) : __( 'News', 'smartcat-modules');
+        $instance['scmod_news_title']           = !empty( $new_instance['scmod_news_title'] ) ? strip_tags( $new_instance['scmod_news_title'] ) : '';
         $instance['scmod_news_widget_width']    = !empty( $new_instance['scmod_news_widget_width'] ) ? strip_tags( $new_instance['scmod_news_widget_width'] ) : '12';
         $instance['scmod_news_limit']           = !empty( $new_instance['scmod_news_limit'] ) ? strip_tags( $new_instance['scmod_news_limit'] ) : '-1';
 

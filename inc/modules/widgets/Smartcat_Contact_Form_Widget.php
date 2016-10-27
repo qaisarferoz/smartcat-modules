@@ -31,7 +31,7 @@ class Smartcat_Contact_Form_Widget extends WP_Widget {
             '3'     => '1/4',
             '4'     => '1/3',
             '6'     => '1/2',
-            '12'    => 'full'
+            '12'    => __( 'Full', 'smartcat-modules' ),
         );
        
         // Set default values
@@ -47,13 +47,13 @@ class Smartcat_Contact_Form_Widget extends WP_Widget {
         ) );
 
         // Retrieve an existing value from the database
-        $scmod_contact_form_title           = !empty( $instance['scmod_contact_form_title'] ) ? $instance['scmod_contact_form_title'] : __( 'Contact Form', 'smartcat-modules');
+        $scmod_contact_form_title           = !empty( $instance['scmod_contact_form_title'] ) ? $instance['scmod_contact_form_title'] : '';
         $scmod_contact_form_width           = !empty( $instance['scmod_contact_form_width'] ) ? $instance['scmod_contact_form_width'] : '12';
-        $scmod_contact_form_detail          = !empty( $instance['scmod_contact_form_detail'] ) ? $instance['scmod_contact_form_detail'] : __( 'Detail Text', 'smartcat-modules');
-        $scmod_contact_form_from_label      = !empty( $instance['scmod_contact_form_from_label'] ) ? $instance['scmod_contact_form_from_label'] : __( 'Name', 'smartcat-modules');
-        $scmod_contact_form_email_label     = !empty( $instance['scmod_contact_form_email_label'] ) ? $instance['scmod_contact_form_email_label'] : __( 'Email Address', 'smartcat-modules');
-        $scmod_contact_form_message_label   = !empty( $instance['scmod_contact_form_message_label'] ) ? $instance['scmod_contact_form_message_label'] : __( 'Message', 'smartcat-modules');
-        $scmod_contact_form_submit_label    = !empty( $instance['scmod_contact_form_submit_label'] ) ? $instance['scmod_contact_form_submit_label'] : __( 'Submit', 'smartcat-modules');
+        $scmod_contact_form_detail          = !empty( $instance['scmod_contact_form_detail'] ) ? $instance['scmod_contact_form_detail'] : '';
+        $scmod_contact_form_from_label      = !empty( $instance['scmod_contact_form_from_label'] ) ? $instance['scmod_contact_form_from_label'] : '';
+        $scmod_contact_form_email_label     = !empty( $instance['scmod_contact_form_email_label'] ) ? $instance['scmod_contact_form_email_label'] : '';
+        $scmod_contact_form_message_label   = !empty( $instance['scmod_contact_form_message_label'] ) ? $instance['scmod_contact_form_message_label'] : '';
+        $scmod_contact_form_submit_label    = !empty( $instance['scmod_contact_form_submit_label'] ) ? $instance['scmod_contact_form_submit_label'] : '';
         $scmod_contact_form_recipient_email = !empty( $instance['scmod_contact_form_recipient_email'] ) ? $instance['scmod_contact_form_recipient_email'] : '';
         
         // Title - Text
@@ -114,13 +114,13 @@ class Smartcat_Contact_Form_Widget extends WP_Widget {
 
         $instance = $old_instance;
 
-        $instance['scmod_contact_form_title']           = !empty( $new_instance['scmod_contact_form_title'] ) ? strip_tags( $new_instance['scmod_contact_form_title'] ) : __( 'Contact Form', 'smartcat-modules');
+        $instance['scmod_contact_form_title']           = !empty( $new_instance['scmod_contact_form_title'] ) ? strip_tags( $new_instance['scmod_contact_form_title'] ) : '';
         $instance['scmod_contact_form_width']           = !empty( $new_instance['scmod_contact_form_width'] ) ? strip_tags( $new_instance['scmod_contact_form_width'] ) : '12';
-        $instance['scmod_contact_form_detail']          = !empty( $new_instance['scmod_contact_form_detail'] ) ? strip_tags( $new_instance['scmod_contact_form_detail'] ) : __( 'Detail Text', 'smartcat-modules');
-        $instance['scmod_contact_form_from_label']      = !empty( $new_instance['scmod_contact_form_from_label'] ) ? strip_tags( $new_instance['scmod_contact_form_from_label'] ) : __( 'Name', 'smartcat-modules'); 
-        $instance['scmod_contact_form_email_label']     = !empty( $new_instance['scmod_contact_form_email_label'] ) ? strip_tags( $new_instance['scmod_contact_form_email_label'] ) : __( 'Email Address', 'smartcat-modules'); 
-        $instance['scmod_contact_form_message_label']   = !empty( $new_instance['scmod_contact_form_message_label'] ) ? strip_tags( $new_instance['scmod_contact_form_message_label'] ) : __( 'Message', 'smartcat-modules');
-        $instance['scmod_contact_form_submit_label']    = !empty( $new_instance['scmod_contact_form_submit_label'] ) ? strip_tags( $new_instance['scmod_contact_form_submit_label'] ) : __( 'Submit', 'smartcat-modules'); 
+        $instance['scmod_contact_form_detail']          = !empty( $new_instance['scmod_contact_form_detail'] ) ? strip_tags( $new_instance['scmod_contact_form_detail'] ) : '';
+        $instance['scmod_contact_form_from_label']      = !empty( $new_instance['scmod_contact_form_from_label'] ) ? strip_tags( $new_instance['scmod_contact_form_from_label'] ) : '';
+        $instance['scmod_contact_form_email_label']     = !empty( $new_instance['scmod_contact_form_email_label'] ) ? strip_tags( $new_instance['scmod_contact_form_email_label'] ) : '';
+        $instance['scmod_contact_form_message_label']   = !empty( $new_instance['scmod_contact_form_message_label'] ) ? strip_tags( $new_instance['scmod_contact_form_message_label'] ) : '';
+        $instance['scmod_contact_form_submit_label']    = !empty( $new_instance['scmod_contact_form_submit_label'] ) ? strip_tags( $new_instance['scmod_contact_form_submit_label'] ) : '';
         $instance['scmod_contact_form_recipient_email'] = !empty( $new_instance['scmod_contact_form_recipient_email'] ) ? strip_tags( $new_instance['scmod_contact_form_recipient_email'] ) : '';
 
         return $instance;

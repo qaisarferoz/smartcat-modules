@@ -29,7 +29,7 @@ class Smartcat_Jobs_Widget extends WP_Widget {
 
         $widths = array(
             '6'     => '1/2',
-            '12'    => 'full'
+            '12'    => __( 'Full', 'smartcat-modules' ),
         );
        
         // Set default values
@@ -40,7 +40,7 @@ class Smartcat_Jobs_Widget extends WP_Widget {
         ) );
 
         // Retrieve an existing value from the database
-        $scmod_jobs_title        = !empty( $instance['scmod_jobs_title'] ) ? $instance['scmod_jobs_title'] : __( 'Work History', 'smartcat-modules');
+        $scmod_jobs_title        = !empty( $instance['scmod_jobs_title'] ) ? $instance['scmod_jobs_title'] : '';
         $scmod_jobs_widget_width = !empty( $instance['scmod_jobs_widget_width'] ) ? $instance['scmod_jobs_widget_width'] : '12';
         $scmod_jobs_limit        = !empty( $instance['scmod_jobs_limit'] ) ? $instance['scmod_jobs_limit'] : '-1';
         
@@ -72,7 +72,7 @@ class Smartcat_Jobs_Widget extends WP_Widget {
 
         $instance = $old_instance;
 
-        $instance['scmod_jobs_title']           = !empty( $new_instance['scmod_jobs_title'] ) ? strip_tags( $new_instance['scmod_jobs_title'] ) : __( 'Work History', 'smartcat-modules');
+        $instance['scmod_jobs_title']           = !empty( $new_instance['scmod_jobs_title'] ) ? strip_tags( $new_instance['scmod_jobs_title'] ) : '';
         $instance['scmod_jobs_widget_width']    = !empty( $new_instance['scmod_jobs_widget_width'] ) ? strip_tags( $new_instance['scmod_jobs_widget_width'] ) : '12';
         $instance['scmod_jobs_limit']           = !empty( $new_instance['scmod_jobs_limit'] ) ? strip_tags( $new_instance['scmod_jobs_limit'] ) : '-1';
 

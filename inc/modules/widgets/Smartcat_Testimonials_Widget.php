@@ -29,7 +29,7 @@ class Smartcat_Testimonials_Widget extends WP_Widget {
 
         $widths = array(
             '6'     => '1/2',
-            '12'    => 'full'
+            '12'    => __( 'Full', 'smartcat-modules' ),
         );
        
         // Set default values
@@ -40,7 +40,7 @@ class Smartcat_Testimonials_Widget extends WP_Widget {
         ) );
 
         // Retrieve an existing value from the database
-        $scmod_testimonials_title           = !empty( $instance['scmod_testimonials_title'] ) ? $instance['scmod_testimonials_title'] : __( 'Testimonials', 'smartcat-modules');
+        $scmod_testimonials_title           = !empty( $instance['scmod_testimonials_title'] ) ? $instance['scmod_testimonials_title'] : '';
         $scmod_testimonials_widget_width     = !empty( $instance['scmod_testimonials_widget_width'] ) ? $instance['scmod_testimonials_widget_width'] : '12';
         $scmod_testimonials_limit        = !empty( $instance['scmod_testimonials_limit'] ) ? $instance['scmod_testimonials_limit'] : '-1';
         
@@ -72,7 +72,7 @@ class Smartcat_Testimonials_Widget extends WP_Widget {
 
         $instance = $old_instance;
 
-        $instance['scmod_testimonials_title']           = !empty( $new_instance['scmod_testimonials_title'] ) ? strip_tags( $new_instance['scmod_testimonials_title'] ) : __( 'Testimonials', 'smartcat-modules');
+        $instance['scmod_testimonials_title']           = !empty( $new_instance['scmod_testimonials_title'] ) ? strip_tags( $new_instance['scmod_testimonials_title'] ) : '';
         $instance['scmod_testimonials_widget_width']    = !empty( $new_instance['scmod_testimonials_widget_width'] ) ? strip_tags( $new_instance['scmod_testimonials_widget_width'] ) : '12';
         $instance['scmod_testimonials_limit']           = !empty( $new_instance['scmod_testimonials_limit'] ) ? strip_tags( $new_instance['scmod_testimonials_limit'] ) : '-1';
 

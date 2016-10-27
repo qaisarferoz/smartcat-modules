@@ -31,7 +31,7 @@ class Smartcat_FAQs_Widget extends WP_Widget {
             '3'     => '1/4',
             '4'     => '1/3',
             '6'     => '1/2',
-            '12'    => 'full'
+            '12'    => __( 'Full', 'smartcat-modules' ),
         );
        
         // Set default values
@@ -42,7 +42,7 @@ class Smartcat_FAQs_Widget extends WP_Widget {
         ) );
 
         // Retrieve an existing value from the database
-        $scmod_faqs_title           = !empty( $instance['scmod_faqs_title'] ) ? $instance['scmod_faqs_title'] : __( 'FAQs', 'smartcat-modules');
+        $scmod_faqs_title           = !empty( $instance['scmod_faqs_title'] ) ? $instance['scmod_faqs_title'] : '';
         $scmod_faqs_widget_width    = !empty( $instance['scmod_faqs_widget_width'] ) ? $instance['scmod_faqs_widget_width'] : '12';
         $scmod_faqs_limit           = !empty( $instance['scmod_faqs_limit'] ) ? $instance['scmod_faqs_limit'] : '-1';
         
@@ -74,7 +74,7 @@ class Smartcat_FAQs_Widget extends WP_Widget {
 
         $instance = $old_instance;
 
-        $instance['scmod_faqs_title']           = !empty( $new_instance['scmod_faqs_title'] ) ? strip_tags( $new_instance['scmod_faqs_title'] ) : __( 'FAQs', 'smartcat-modules');
+        $instance['scmod_faqs_title']           = !empty( $new_instance['scmod_faqs_title'] ) ? strip_tags( $new_instance['scmod_faqs_title'] ) : '';
         $instance['scmod_faqs_widget_width']    = !empty( $new_instance['scmod_faqs_widget_width'] ) ? strip_tags( $new_instance['scmod_faqs_widget_width'] ) : '12';
         $instance['scmod_faqs_limit']           = !empty( $new_instance['scmod_faqs_limit'] ) ? strip_tags( $new_instance['scmod_faqs_limit'] ) : '-1';
 
