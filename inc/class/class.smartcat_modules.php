@@ -148,6 +148,10 @@ class SmartcatModulesPlugin {
 
             // Add all of the appropriate CPT module menu items that are enabled through Customizer
 
+            if ( in_array( 'client', $this->modules ) ) :
+                add_submenu_page( 'modules', 'Clients', 'Clients', 'manage_options', 'edit.php?post_type=client', NULL );
+            endif;
+
             if ( in_array( 'event', $this->modules ) ) :
                 add_submenu_page( 'modules', 'Events', 'Events', 'manage_options', 'edit.php?post_type=event', NULL );
             endif;
@@ -160,14 +164,18 @@ class SmartcatModulesPlugin {
                 add_submenu_page( 'modules', 'Gallery Items', 'Gallery Items', 'manage_options', 'edit.php?post_type=gallery', NULL );
             endif;
 
-            if ( in_array( 'job', $this->modules ) ) :
-                add_submenu_page( 'modules', 'Jobs', 'Jobs', 'manage_options', 'edit.php?post_type=job', NULL );
-            endif;
-
             if ( in_array( 'news', $this->modules ) ) :
                 add_submenu_page( 'modules', 'News', 'News', 'manage_options', 'edit.php?post_type=news', NULL );
             endif;
 
+            if ( in_array( 'position', $this->modules ) ) :
+                add_submenu_page( 'modules', 'Work History', 'Work History', 'manage_options', 'edit.php?post_type=position', NULL );
+            endif;
+            
+            if ( in_array( 'project', $this->modules ) ) :
+                add_submenu_page( 'modules', 'Projects', 'Projects', 'manage_options', 'edit.php?post_type=project', NULL );
+            endif;
+            
             if ( in_array( 'testimonial', $this->modules ) ) :
                 add_submenu_page( 'modules', 'Testimonials', 'Testimonials', 'manage_options', 'edit.php?post_type=testimonial', NULL );
             endif;
@@ -209,8 +217,8 @@ class SmartcatModulesPlugin {
      */
     public function enqueue_wp_styles_scripts() {
         
-        wp_enqueue_style( 'smartcat-portfolio-main-style', SMARTCAT_MODULES_URL . 'inc/assets/styles/modules.css', NULL, self::VERSION );
-        wp_enqueue_script( 'smartcat-portfolio-main-js', SMARTCAT_MODULES_URL . 'inc/assets/scripts/modules.js', NULL, self::VERSION );
+        wp_enqueue_style( 'smartcat-modules-main-style', SMARTCAT_MODULES_URL . 'inc/assets/styles/modules.css', NULL, self::VERSION );
+        wp_enqueue_script( 'smartcat-modules-main-js', SMARTCAT_MODULES_URL . 'inc/assets/scripts/modules.js', NULL, self::VERSION );
         
     }
 

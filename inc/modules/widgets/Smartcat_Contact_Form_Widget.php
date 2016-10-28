@@ -59,7 +59,7 @@ class Smartcat_Contact_Form_Widget extends WP_Widget {
         // Title - Text
         echo '<p>';
         echo '	<label for="' . $this->get_field_id( 'scmod_contact_form_title' ) . '" class="scmod_contact_form_title_label">' . __( 'Title', 'smartcat-modules' ) . '</label>';
-        echo '	<input type="text" id="' . $this->get_field_id( 'scmod_contact_form_title' ) . '" name="' . $this->get_field_name( 'scmod_contact_form_title' ) . '" class="widefat" placeholder="' . esc_attr__( 'Title', 'smartcat-modules' ) . '" value="' . esc_attr( $scmod_contact_form_title ) . '">';
+        echo '	<input type="text" id="' . $this->get_field_id( 'scmod_contact_form_title' ) . '" name="' . $this->get_field_name( 'scmod_contact_form_title' ) . '" class="widefat" placeholder="' . esc_attr__( '', 'smartcat-modules' ) . '" value="' . esc_attr( $scmod_contact_form_title ) . '">';
         echo '</p>';
 
         // Widget Width - Select/Option

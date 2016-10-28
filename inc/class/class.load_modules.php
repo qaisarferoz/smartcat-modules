@@ -42,10 +42,13 @@ class SmartcatModulesLoader {
     public function enqueue_module_styles_scripts() {
         
         if ( in_array( 'gallery', $this->modules ) ) :
-            
             wp_enqueue_style( 'unite', SMARTCAT_MODULES_URL . 'inc/assets/styles/unite-gallery.css', array(), $this->version );
             wp_enqueue_script('unite-js', SMARTCAT_MODULES_URL . 'inc/assets/scripts/unite.min.js', array('jquery'), $this->version, true);
+        endif;
         
+        if ( in_array( 'testimonial', $this->modules ) ) :
+            wp_enqueue_style( 'owl-carousel', SMARTCAT_MODULES_URL . 'inc/assets/styles/owl.carousel.css', array(), $this->version );
+            wp_enqueue_script('owl-carousel-js', SMARTCAT_MODULES_URL . 'inc/assets/scripts/owl.carousel.min.js', array('jquery'), $this->version, true);
         endif;
         
     }
@@ -60,6 +63,10 @@ class SmartcatModulesLoader {
         
         if ( !is_null( $this->modules ) ) :
             
+            if ( in_array( 'client', $this->modules ) ) :
+                include_once SMARTCAT_MODULES_PATH . 'inc/modules/cpt_client.php';
+            endif;
+
             if ( in_array( 'event', $this->modules ) ) :
                 include_once SMARTCAT_MODULES_PATH . 'inc/modules/cpt_event.php';
             endif;
@@ -72,12 +79,16 @@ class SmartcatModulesLoader {
                 include_once SMARTCAT_MODULES_PATH . 'inc/modules/cpt_gallery.php';
             endif;
 
-            if ( in_array( 'job', $this->modules ) ) :
-                include_once SMARTCAT_MODULES_PATH . 'inc/modules/cpt_job.php';
-            endif;
-            
             if ( in_array( 'news', $this->modules ) ) :
                 include_once SMARTCAT_MODULES_PATH . 'inc/modules/cpt_news.php';
+            endif;
+            
+            if ( in_array( 'position', $this->modules ) ) :
+                include_once SMARTCAT_MODULES_PATH . 'inc/modules/cpt_position.php';
+            endif;
+            
+            if ( in_array( 'project', $this->modules ) ) :
+                include_once SMARTCAT_MODULES_PATH . 'inc/modules/cpt_project.php';
             endif;
             
             if ( in_array( 'testimonial', $this->modules ) ) :
@@ -112,6 +123,10 @@ class SmartcatModulesLoader {
         
         // Register remaining CPT Widgets (if enabled)
         
+        if ( in_array( 'client', $this->modules ) ) :
+            register_widget( 'Smartcat_Clients_Widget' );
+        endif;
+
         if ( in_array( 'event', $this->modules ) ) :
             register_widget( 'Smartcat_Events_Widget' );
         endif;
@@ -124,12 +139,16 @@ class SmartcatModulesLoader {
             register_widget( 'Smartcat_Gallery_Widget' );
         endif;
         
-        if ( in_array( 'job', $this->modules ) ) :
-            register_widget( 'Smartcat_Jobs_Widget' );
-        endif;
-        
         if ( in_array( 'news', $this->modules ) ) :
             register_widget( 'Smartcat_News_Widget' );
+        endif;
+        
+        if ( in_array( 'position', $this->modules ) ) :
+            register_widget( 'Smartcat_Work_History_Widget' );
+        endif;
+        
+        if ( in_array( 'project', $this->modules ) ) :
+            register_widget( 'Smartcat_Projects_Widget' );
         endif;
         
         if ( in_array( 'testimonial', $this->modules ) ) :

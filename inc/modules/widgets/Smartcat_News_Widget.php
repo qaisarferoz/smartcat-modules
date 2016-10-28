@@ -47,7 +47,7 @@ class Smartcat_News_Widget extends WP_Widget {
         // Title - Text
         echo '<p>';
         echo '	<label for="' . $this->get_field_id( 'scmod_news_title' ) . '" class="scmod_news_title_label">' . __( 'Title', 'smartcat-modules' ) . '</label>';
-        echo '	<input type="text" id="' . $this->get_field_id( 'scmod_news_title' ) . '" name="' . $this->get_field_name( 'scmod_news_title' ) . '" class="widefat" placeholder="' . esc_attr__( 'Title', 'smartcat-modules' ) . '" value="' . esc_attr( $scmod_news_title ) . '">';
+        echo '	<input type="text" id="' . $this->get_field_id( 'scmod_news_title' ) . '" name="' . $this->get_field_name( 'scmod_news_title' ) . '" class="widefat" placeholder="' . esc_attr__( '', 'smartcat-modules' ) . '" value="' . esc_attr( $scmod_news_title ) . '">';
         echo '</p>';
 
         // Widget Width - Select/Option

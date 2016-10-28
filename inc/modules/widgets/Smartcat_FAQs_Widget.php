@@ -49,7 +49,7 @@ class Smartcat_FAQs_Widget extends WP_Widget {
         // Title - Text
         echo '<p>';
         echo '	<label for="' . $this->get_field_id( 'scmod_faqs_title' ) . '" class="scmod_faqs_title_label">' . __( 'Title', 'smartcat-modules' ) . '</label>';
-        echo '	<input type="text" id="' . $this->get_field_id( 'scmod_faqs_title' ) . '" name="' . $this->get_field_name( 'scmod_faqs_title' ) . '" class="widefat" placeholder="' . esc_attr__( 'Title', 'smartcat-modules' ) . '" value="' . esc_attr( $scmod_faqs_title ) . '">';
+        echo '	<input type="text" id="' . $this->get_field_id( 'scmod_faqs_title' ) . '" name="' . $this->get_field_name( 'scmod_faqs_title' ) . '" class="widefat" placeholder="' . esc_attr__( '', 'smartcat-modules' ) . '" value="' . esc_attr( $scmod_faqs_title ) . '">';
         echo '</p>';
 
         // Widget Width - Select/Option

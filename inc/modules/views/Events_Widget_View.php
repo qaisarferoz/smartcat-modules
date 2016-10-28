@@ -24,9 +24,9 @@ $events = new WP_Query( $args );
 // The Loop
 if ( $events->have_posts() ) : ?>
 
-    <div class="vivita-events <?php echo isset( $instance['scmod_events_widget_width'] ) ? 'col-sm-' . $instance['scmod_events_widget_width'] : 'col-sm-12'; ?>">
+    <div class="<?php echo isset( $instance['scmod_events_widget_width'] ) ? 'col-sm-' . $instance['scmod_events_widget_width'] : 'col-sm-12'; ?>">
 
-        <h2 class="widget-title cpt-widget-title">
+        <h2 class="widget-title">
             <?php echo !empty( $instance['scmod_events_title'] ) ? esc_html( $instance['scmod_events_title'] ) : ''; ?>
         </h2>
 
@@ -46,7 +46,7 @@ if ( $events->have_posts() ) : ?>
 
                         <?php if ( has_post_thumbnail() ) : ?>
 
-                            <a href="<?php echo esc_url( get_the_permalink( get_the_ID() ) ); ?>">
+                            <a class="event-image" href="<?php echo esc_url( get_the_permalink( get_the_ID() ) ); ?>">
                                 <?php the_post_thumbnail('large'); ?>
                             </a>
 
@@ -77,7 +77,7 @@ if ( $events->have_posts() ) : ?>
 
                             <div class="clear"></div>
 
-                            <a class="apply accent-button" href="<?php echo esc_url( get_the_permalink( get_the_ID() ) ); ?>"><?php _e( 'Learn More', 'vivita') ?></a>
+                            <a class="button" href="<?php echo esc_url( get_the_permalink( get_the_ID() ) ); ?>"><?php _e( 'Learn More', 'smartcat-modules') ?></a>
 
                         </div>
 
@@ -93,7 +93,7 @@ if ( $events->have_posts() ) : ?>
 
 <?php else : ?>
 
-    <h4 class="none-to-display"><?php _e( 'There are currently no upcoming events, please check again at a later time.', 'vivita' ); ?></h4>
+    <h4 class="none-to-display"><?php _e( 'There are currently no upcoming events, please check again at a later time.', 'smartcat-modules' ); ?></h4>
 
 <?php endif; ?>
 

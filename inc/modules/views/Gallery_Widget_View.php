@@ -14,7 +14,7 @@ $gallery_style = empty( $instance['scmod_gallery_shuffle'] ) || $instance['scmod
 <script type="text/javascript">
 
     jQuery(document).ready(function(){
-        jQuery(".vivita-gallery-contents").unitegallery({
+        jQuery("#gallery").unitegallery({
             tiles_col_width: 300,
             lightbox_type: "compact",
             tile_enable_icons: false,
@@ -24,9 +24,9 @@ $gallery_style = empty( $instance['scmod_gallery_shuffle'] ) || $instance['scmod
 
 </script>
 
-<div class="vivita-gallery <?php echo isset( $instance['scmod_gallery_widget_width'] ) ? 'col-sm-' . $instance['scmod_gallery_widget_width'] : 'col-sm-12'; ?>">
+<div class="<?php echo isset( $instance['scmod_gallery_widget_width'] ) ? 'col-sm-' . $instance['scmod_gallery_widget_width'] : 'col-sm-12'; ?>">
 
-    <h2 class="widget-title cpt-widget-title">
+    <h2 class="widget-title">
         <?php echo !empty( $instance['scmod_gallery_title'] ) ? esc_html( $instance['scmod_gallery_title'] ) : ''; ?>
     </h2>
     
@@ -36,7 +36,7 @@ $gallery_style = empty( $instance['scmod_gallery_shuffle'] ) || $instance['scmod
 
             <?php if ( !empty( $gallery ) ) : ?>
 
-                <div id="gallery" style="display:none;" class="vivita-gallery-contents">
+                <div id="gallery" style="display:none;">
 
                     <?php foreach( $gallery as $item ) : ?>
 
@@ -57,7 +57,7 @@ $gallery_style = empty( $instance['scmod_gallery_shuffle'] ) || $instance['scmod
 
             <?php else : ?>
 
-                <h4 class="none-to-display"><?php _e( 'There are currently no photos to display in the Gallery, please check again at a later time.', 'vivita' ); ?></h4>
+                <h4 class="none-to-display"><?php _e( 'There are currently no photos to display in the Gallery, please check again at a later time.', 'smartcat-modules' ); ?></h4>
 
             <?php endif; ?>
 

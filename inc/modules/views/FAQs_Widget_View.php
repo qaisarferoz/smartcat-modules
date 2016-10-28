@@ -14,9 +14,9 @@ $faqs = new WP_Query( $args );
 // The Loop
 if ( $faqs->have_posts() ) : ?>
 
-    <div class="vivita-faqs <?php echo isset( $instance['scmod_faqs_widget_width'] ) ? 'col-sm-' . $instance['scmod_faqs_widget_width'] : 'col-sm-12'; ?>">
+    <div class="<?php echo isset( $instance['scmod_faqs_widget_width'] ) ? 'col-sm-' . $instance['scmod_faqs_widget_width'] : 'col-sm-12'; ?>">
 
-        <h2 class="widget-title cpt-widget-title">
+        <h2 class="widget-title">
             <?php echo !empty( $instance['scmod_faqs_title'] ) ? esc_html( $instance['scmod_faqs_title'] ) : ''; ?>
         </h2>
 
@@ -26,7 +26,7 @@ if ( $faqs->have_posts() ) : ?>
 
                 $faqs->the_post(); ?>
 
-                <div class="col-sm-12 single-faq">
+                <div class="single-faq col-sm-12">
 
                     <h3 class="faq-title">
                         <?php echo get_the_title(); ?>
@@ -47,7 +47,7 @@ if ( $faqs->have_posts() ) : ?>
 
 <?php else : ?>
 
-    <h4 class="none-to-display"><?php _e( 'There are currently no FAQs, please check again at a later time.', 'vivita' ); ?></h4>
+    <h4 class="none-to-display"><?php _e( 'There are currently no FAQs, please check again at a later time.', 'smartcat-modules' ); ?></h4>
 
 <?php endif; ?>
     

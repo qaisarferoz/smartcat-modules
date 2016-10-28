@@ -14,9 +14,9 @@ if ( $news->have_posts() ) : ?>
 
     <?php $ctr = 0; ?>
 
-    <div class="vivita-news <?php echo isset( $instance['scmod_news_widget_width'] ) ? 'col-sm-' . $instance['scmod_news_widget_width'] : 'col-sm-12'; ?>">
+    <div class="<?php echo isset( $instance['scmod_news_widget_width'] ) ? 'col-sm-' . $instance['scmod_news_widget_width'] : 'col-sm-12'; ?>">
 
-        <h2 class="widget-title cpt-widget-title">
+        <h2 class="widget-title">
             <?php echo !empty( $instance['scmod_news_title'] ) ? esc_html( $instance['scmod_news_title'] ) : ''; ?>
         </h2>
 
@@ -63,7 +63,12 @@ if ( $news->have_posts() ) : ?>
 
     </div>
 
-<?php endif;
+<?php else : ?>
 
-// Restore original Post Data
-wp_reset_postdata();
+    <h4 class="none-to-display"><?php _e( 'There are currently no News items to display, please check again at a later time.', 'smartcat-modules' ); ?></h4>
+
+<?php endif; ?>
+    
+<?php wp_reset_postdata(); ?>
+
+<div class="clear"></div>

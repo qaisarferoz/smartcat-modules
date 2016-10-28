@@ -54,7 +54,7 @@ class Smartcat_Contact_Info_Widget extends WP_Widget {
         // Title - Text
         echo '<p>';
         echo '	<label for="' . $this->get_field_id( 'scmod_contact_info_title' ) . '" class="scmod_contact_info_title_label">' . __( 'Title', 'smartcat-modules' ) . '</label>';
-        echo '	<input type="text" id="' . $this->get_field_id( 'scmod_contact_info_title' ) . '" name="' . $this->get_field_name( 'scmod_contact_info_title' ) . '" class="widefat" placeholder="' . esc_attr__( 'Title', 'smartcat-modules' ) . '" value="' . esc_attr( $scmod_contact_info_title ) . '">';
+        echo '	<input type="text" id="' . $this->get_field_id( 'scmod_contact_info_title' ) . '" name="' . $this->get_field_name( 'scmod_contact_info_title' ) . '" class="widefat" placeholder="' . esc_attr__( '', 'smartcat-modules' ) . '" value="' . esc_attr( $scmod_contact_info_title ) . '">';
         echo '</p>';
 
         // Widget Width - Select/Option
@@ -70,7 +70,7 @@ class Smartcat_Contact_Info_Widget extends WP_Widget {
         // Detail Text - Text
         echo '<p>';
         echo '	<label for="' . $this->get_field_id( 'scmod_contact_info_detail' ) . '" class="scmod_contact_info_detail_label">' . __( 'Detail Text', 'smartcat-modules' ) . '</label>';
-        echo '	<input type="text" id="' . $this->get_field_id( 'scmod_contact_info_detail' ) . '" name="' . $this->get_field_name( 'scmod_contact_info_detail' ) . '" class="widefat" placeholder="' . esc_attr__( 'Detail Text', 'smartcat-modules' ) . '" value="' . esc_attr( $scmod_contact_info_detail ) . '">';
+        echo '	<input type="text" id="' . $this->get_field_id( 'scmod_contact_info_detail' ) . '" name="' . $this->get_field_name( 'scmod_contact_info_detail' ) . '" class="widefat" placeholder="' . esc_attr__( '', 'smartcat-modules' ) . '" value="' . esc_attr( $scmod_contact_info_detail ) . '">';
         echo '</p>';
         
         // Phone - Tel
@@ -88,7 +88,7 @@ class Smartcat_Contact_Info_Widget extends WP_Widget {
         // Address - TextArea
         echo '<p>';
         echo '	<label for="' . $this->get_field_id( 'scmod_contact_info_address' ) . '" class="scmod_contact_info_address_label">' . __( 'Address', 'smartcat-modules' ) . '</label>';
-        echo '	<textarea id="' . $this->get_field_id( 'scmod_contact_info_address' ) . '" name="' . $this->get_field_name( 'scmod_contact_info_address' ) . '" class="widefat" placeholder="' . esc_attr__( '', 'vivita' ) . '">' . $scmod_contact_info_address . '</textarea>';
+        echo '	<textarea id="' . $this->get_field_id( 'scmod_contact_info_address' ) . '" name="' . $this->get_field_name( 'scmod_contact_info_address' ) . '" class="widefat" placeholder="' . esc_attr__( '', 'smartcat-modules' ) . '">' . $scmod_contact_info_address . '</textarea>';
         echo '</p>';
 
     }

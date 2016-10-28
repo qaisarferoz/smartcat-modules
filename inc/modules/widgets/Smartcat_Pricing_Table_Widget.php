@@ -55,7 +55,7 @@ class Smartcat_Pricing_Table_Widget extends WP_Widget {
         // Title - Text
         echo '<p>';
         echo '	<label for="' . $this->get_field_id( 'scmod_pricing_table_title' ) . '" class="scmod_pricing_table_title_label">' . __( 'Title', 'smartcat-modules' ) . '</label>';
-        echo '	<input type="text" id="' . $this->get_field_id( 'scmod_pricing_table_title' ) . '" name="' . $this->get_field_name( 'scmod_pricing_table_title' ) . '" class="widefat" placeholder="' . esc_attr__( 'Title', 'smartcat-modules' ) . '" value="' . esc_attr( $scmod_pricing_table_title ) . '">';
+        echo '	<input type="text" id="' . $this->get_field_id( 'scmod_pricing_table_title' ) . '" name="' . $this->get_field_name( 'scmod_pricing_table_title' ) . '" class="widefat" placeholder="' . esc_attr__( '', 'smartcat-modules' ) . '" value="' . esc_attr( $scmod_pricing_table_title ) . '">';
         echo '</p>';
 
         // Widget Width - Select/Option
@@ -77,20 +77,20 @@ class Smartcat_Pricing_Table_Widget extends WP_Widget {
         // Is Special? - Checkbox
         echo '<p>';
         echo '	<label>';
-        echo '      <input type="checkbox" id="' . $this->get_field_id( 'scmod_pricing_table_is_special' ) . '" name="' . $this->get_field_name( 'scmod_pricing_table_is_special' ) . '" class="widefat" placeholder="' . esc_attr__( '', 'athena' ) . '" value="1" ' . checked( $scmod_pricing_table_is_special, true, false ) . '>' . __( 'Special', 'athena' );
+        echo '      <input type="checkbox" id="' . $this->get_field_id( 'scmod_pricing_table_is_special' ) . '" name="' . $this->get_field_name( 'scmod_pricing_table_is_special' ) . '" class="widefat" placeholder="' . esc_attr__( '', 'smartcat-modules' ) . '" value="1" ' . checked( $scmod_pricing_table_is_special, true, false ) . '>' . __( 'Special', 'smartcat-modules' );
         echo '	</label><br>';
         echo '</p>';
           
         // Price - Text
         echo '<p>';
         echo '	<label for="' . $this->get_field_id( 'scmod_pricing_table_price' ) . '" class="scmod_pricing_table_price_label">' . __( 'Price', 'smartcat-modules' ) . '</label>';
-        echo '	<input type="text" id="' . $this->get_field_id( 'scmod_pricing_table_price' ) . '" name="' . $this->get_field_name( 'scmod_pricing_table_price' ) . '" class="widefat" placeholder="' . esc_attr__( 'Price', 'smartcat-modules' ) . '" value="' . esc_attr( $scmod_pricing_table_price ) . '">';
+        echo '	<input type="text" id="' . $this->get_field_id( 'scmod_pricing_table_price' ) . '" name="' . $this->get_field_name( 'scmod_pricing_table_price' ) . '" class="widefat" placeholder="' . esc_attr__( '', 'smartcat-modules' ) . '" value="' . esc_attr( $scmod_pricing_table_price ) . '">';
         echo '</p>';
         
         // Description - Textarea
         echo '<p>';
         echo '	<label for="' . $this->get_field_id( 'scmod_pricing_table_description' ) . '" class="scmod_pricing_table_description_label">' . __( 'Description', 'smartcat-modules' ) . '</label>';
-        echo '	<textarea id="' . $this->get_field_id( 'scmod_pricing_table_description' ) . '" name="' . $this->get_field_name( 'scmod_pricing_table_description' ) . '" class="widefat" placeholder="' . esc_attr__( '', 'vivita' ) . '">' . $scmod_pricing_table_description . '</textarea>';
+        echo '	<textarea id="' . $this->get_field_id( 'scmod_pricing_table_description' ) . '" name="' . $this->get_field_name( 'scmod_pricing_table_description' ) . '" class="widefat" placeholder="' . esc_attr__( '', 'smartcat-modules' ) . '">' . $scmod_pricing_table_description . '</textarea>';
         echo '</p>';
 
     }

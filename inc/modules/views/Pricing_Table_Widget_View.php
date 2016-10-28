@@ -1,4 +1,4 @@
-<div class="vivita-pricing-table <?php echo isset( $instance['scmod_pricing_table_width'] ) ? 'col-sm-' . $instance['scmod_pricing_table_width'] : 'col-sm-4'; ?>">
+<div class="<?php echo isset( $instance['scmod_pricing_table_width'] ) ? 'col-sm-' . $instance['scmod_pricing_table_width'] : 'col-sm-4'; ?>">
     
     <div class="inner">
         
