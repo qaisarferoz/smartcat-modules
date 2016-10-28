@@ -42,7 +42,7 @@ if ( $projects->have_posts() ) : ?>
                             <a href="<?php echo esc_url( get_the_permalink( get_the_ID() ) ); ?>"><?php echo esc_html( get_the_title() ); ?></a>
                         </h4>
                         
-                        <h5 class="project-date"><?php echo esc_html( date( 'F Y', strtotime( get_post_meta( get_the_ID(), 'project_complete_date', true ) ) ) ); ?></h5>
+                        <h5 class="project-date"><?php echo esc_html( date( 'F Y', strtotime( get_post_meta( get_the_ID(), 'project_meta_complete_date', true ) ) ) ); ?></h5>
                         
                     </div>
 

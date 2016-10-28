@@ -9,7 +9,7 @@ $args = array (
     'orderby' => 'date',
     'meta_query' => array (
         array (
-            'key' => 'event_metadate',
+            'key' => 'event_meta_date',
             'value' => date( 'Y-m-d' ),
             'compare' => '>=',
             'type' => 'DATE',
@@ -32,11 +32,7 @@ if ( $events->have_posts() ) : ?>
 
         <div class="row">
 
-            <?php $ctr = 0; ?>
-
             <?php while ( $events->have_posts() ) : ?>
-
-                <?php $ctr++; ?>
 
                 <?php $events->the_post(); ?>
 
@@ -63,15 +59,15 @@ if ( $events->have_posts() ) : ?>
                             </h2>
 
                             <div class="location">
-                                <?php echo get_post_meta( get_the_ID(), 'event_metalocation', true ); ?>
+                                <?php echo get_post_meta( get_the_ID(), 'event_meta_location', true ); ?>
                             </div>
 
                             <div class="date">
 
-                                <?php echo date( 'M jS, Y', strtotime( get_post_meta( get_the_ID(), 'event_metadate', true ) ) ); ?>
+                                <?php echo date( 'M jS, Y', strtotime( get_post_meta( get_the_ID(), 'event_meta_date', true ) ) ); ?>
 
-                                <?php echo date( 'g:i', strtotime( get_post_meta( get_the_ID(), 'event_metatime_start', true ) ) ); ?>
-                                to <?php echo date( 'g:i a', strtotime( get_post_meta( get_the_ID(), 'event_metatime_end', true ) ) ); ?>
+                                <?php echo date( 'g:i', strtotime( get_post_meta( get_the_ID(), 'event_meta_time_start', true ) ) ); ?>
+                                to <?php echo date( 'g:i a', strtotime( get_post_meta( get_the_ID(), 'event_meta_time_end', true ) ) ); ?>
 
                             </div>
 

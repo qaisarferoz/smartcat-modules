@@ -31,7 +31,8 @@ if ( $clients->have_posts() ) : ?>
                         <?php if ( has_post_thumbnail() ) : ?>
 
                             <div class="client-logo col-sm-3">
-                                <a href="<?php echo esc_url( get_post_meta( get_the_ID(), 'client_url', true ) ); ?>">
+                                <?php var_dump(get_post_meta( get_the_ID(), 'client_meta_org_url', true )); ?>
+                                <a href="<?php echo esc_url( get_post_meta( get_the_ID(), 'client_meta_org_url', true ) ); ?>">
                                     <img src="<?php echo get_the_post_thumbnail_url(); ?>"/>
                                 </a>
                             </div>
@@ -45,12 +46,12 @@ if ( $clients->have_posts() ) : ?>
                                 <div class="col-sm-12">
                                     
                                     <h3 class="title">
-                                        <a href="<?php echo esc_url( get_post_meta( get_the_ID(), 'client_url', true ) ); ?>">
+                                        <a href="<?php echo esc_url( get_post_meta( get_the_ID(), 'client_meta_org_url', true ) ); ?>">
                                             <?php echo esc_html( get_the_title() ); ?>
                                         </a>
                                     </h3>
                                     
-                                    <h4 class="location"><?php echo esc_html( get_post_meta( get_the_ID(), 'client_location', true ) ); ?></h4>
+                                    <h4 class="location"><?php echo esc_html( get_post_meta( get_the_ID(), 'client_meta_location', true ) ); ?></h4>
                                     
                                 </div>
 

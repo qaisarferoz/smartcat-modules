@@ -40,14 +40,14 @@ if ( $positions->have_posts() ) : ?>
                                         </a>
                                     </h3>
                                     
-                                    <h4 class="position-company"><?php echo esc_html( get_post_meta( get_the_ID(), 'position_company', true ) ); ?></h4>
+                                    <h4 class="position-company"><?php echo esc_html( get_post_meta( get_the_ID(), 'position_meta_company', true ) ); ?></h4>
                                     
                                 </div>
 
                                 <div class="col-sm-6">
                                     
                                     <h4 class="position-date">
-                                        <?php echo esc_html( date( 'M Y', strtotime( get_post_meta( get_the_ID(), 'position_start', true ) ) ) . ' - ' . date( 'M Y', strtotime( get_post_meta( get_the_ID(), 'position_end', true ) ) ) ); ?>
+                                        <?php echo esc_html( date( 'M Y', strtotime( get_post_meta( get_the_ID(), 'position_meta_start_date', true ) ) ) . ' - ' . date( 'M Y', strtotime( get_post_meta( get_the_ID(), 'position_meta_end_date', true ) ) ) ); ?>
                                     </h4>
                                     
                                 </div>

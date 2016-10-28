@@ -10,6 +10,8 @@ class SmartcatModulesLoader {
      * 
      * @since 1.0
      * @return void
+     * @param string[] $modules
+     * @param decimal $version
      */
     public function __construct( $modules = null, $version = null ) {
 
@@ -18,21 +20,24 @@ class SmartcatModulesLoader {
         
         $this->add_hooks();
         $this->check_modules();
+        $this->add_meta_boxes();
         
     }
 
     /**
-     * Hook references go here
+     * Hook References
      * 
      * @since 1.0
      * @return void
      */
     private function add_hooks() {
 
+        // Enqueues
         add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_module_styles_scripts' ) );
+        add_action( 'admin_head-widgets.php', array( $this, 'add_widget_styles' ) );
         
     }
-    
+
     /**
      * Load CSS & JS required for the Modules
      * 
@@ -108,9 +113,10 @@ class SmartcatModulesLoader {
     }
     
     /**
-     * Register widgets
+     * Register Widgets
      * 
      * @since 1.0
+     * @return void
      */
     public function register_widgets() {
         
@@ -156,5 +162,46 @@ class SmartcatModulesLoader {
         endif; 
         
     }
+    
+    /**
+     * Add all applicable Metaboxes to CPTs
+     * 
+     * @since 1.0
+     * @param Post $post
+     * @return void
+     */
+    public function add_meta_boxes() {
+    
+        if ( in_array( 'client', $this->modules ) ) :
+            include_once SMARTCAT_MODULES_PATH . 'inc/modules/metaboxes/Client_Meta_Box.php';
+        endif;
+        
+        if ( in_array( 'event', $this->modules ) ) :
+            include_once SMARTCAT_MODULES_PATH . 'inc/modules/metaboxes/Event_Meta_Box.php';
+        endif;
+        
+        if ( in_array( 'position', $this->modules ) ) :
+            include_once SMARTCAT_MODULES_PATH . 'inc/modules/metaboxes/Position_Meta_Box.php';
+        endif;
+        
+        if ( in_array( 'project', $this->modules ) ) :
+            include_once SMARTCAT_MODULES_PATH . 'inc/modules/metaboxes/Project_Meta_Box.php';
+        endif;  
+        
+    }
+
+    /**
+     * May contain CSS used to alter icons of Widgets
+     * 
+     * @since 1.0
+     * @return void
+     */
+    function add_widget_styles() { ?>
+
+        <style>
+            /* CSS to change Widget Icons? */
+        </style>
+        
+    <?php }
     
 }
