@@ -15,8 +15,11 @@ $gallery_style = empty( $instance['scmod_gallery_shuffle'] ) || $instance['scmod
 
     jQuery(document).ready(function(){
         jQuery("#gallery").unitegallery({
+            <?php if ( !empty( $instance['scmod_gallery_tile_style'] ) && $instance['scmod_gallery_tile_style'] != 'columns' ) : ?>
+                tiles_type: '<?php echo $instance['scmod_gallery_tile_style'] == 'justified' ? 'justified' : 'nested'; ?>',
+            <?php endif; ?>
             tiles_col_width: 300,
-            lightbox_type: "compact",
+            lightbox_type: 'compact',
             tile_enable_icons: false,
             theme_appearance_order: '<?php echo $gallery_style; ?>',
         });

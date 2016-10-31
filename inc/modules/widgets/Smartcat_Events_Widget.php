@@ -28,6 +28,8 @@ class Smartcat_Events_Widget extends WP_Widget {
     public function form( $instance ) {
 
         $widths = array(
+            '3'     => '1/4',
+            '4'     => '1/3',
             '6'     => '1/2',
             '12'    => __( 'Full', 'smartcat-modules' ),
         );

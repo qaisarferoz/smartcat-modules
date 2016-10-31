@@ -3,7 +3,7 @@
 class SmartcatModulesPlugin {
 
     const DEVMODE = TRUE;
-    const VERSION = 1.0;
+    public static $version = 1.0;
 
     private static $instance; 
     private $modules;
@@ -129,8 +129,9 @@ class SmartcatModulesPlugin {
     private function setup_modules() {
 
         if ( !is_null( $this->modules ) ) :
-            new SmartcatModulesLoader( $this->modules, self::VERSION );
+            new SmartcatModulesLoader( $this->modules );
         endif; 
+        
     }
 
     /**
@@ -196,8 +197,8 @@ class SmartcatModulesPlugin {
         
         if ( strpos( $curr_page, '?page=modules' ) !== false ) : 
             
-            wp_enqueue_style( 'smartcat-modules-admin-style', SMARTCAT_MODULES_URL . 'admin/modules_admin.css', NULL, self::VERSION );
-            wp_enqueue_script( 'smartcat-modules-admin-js', SMARTCAT_MODULES_URL . 'admin/modules_admin.js', NULL, self::VERSION );
+            wp_enqueue_style( 'smartcat-modules-admin-style', SMARTCAT_MODULES_URL . 'admin/modules_admin.css', NULL, self::$version );
+            wp_enqueue_script( 'smartcat-modules-admin-js', SMARTCAT_MODULES_URL . 'admin/modules_admin.js', NULL, self::$version );
             
             wp_localize_script( 'smartcat-modules-admin-js', 'smartcat_ajax', array( 
                 'ajax_url' => admin_url( 'admin-ajax.php' ), 
@@ -217,8 +218,10 @@ class SmartcatModulesPlugin {
      */
     public function enqueue_wp_styles_scripts() {
         
-        wp_enqueue_style( 'smartcat-modules-main-style', SMARTCAT_MODULES_URL . 'inc/assets/styles/modules.css', NULL, self::VERSION );
-        wp_enqueue_script( 'smartcat-modules-main-js', SMARTCAT_MODULES_URL . 'inc/assets/scripts/modules.js', NULL, self::VERSION );
+        wp_enqueue_style( 'smartcat-modules-grid', SMARTCAT_MODULES_URL . 'inc/assets/styles/bootstrap-grid.css', NULL, self::$version );
+        wp_enqueue_style( 'font-awesome', SMARTCAT_MODULES_URL . 'inc/assets/styles/font-awesome.min.css', NULL, self::$version );
+        wp_enqueue_style( 'smartcat-modules-main-style', SMARTCAT_MODULES_URL . 'inc/assets/styles/modules.css', NULL, self::$version );
+        wp_enqueue_script( 'smartcat-modules-main-js', SMARTCAT_MODULES_URL . 'inc/assets/scripts/modules.js', NULL, self::$version );
         
     }
 

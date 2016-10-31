@@ -6,7 +6,7 @@ class Smartcat_Work_History_Widget extends WP_Widget {
 
         parent::__construct(
             'smartcat-module-positions',
-            __( 'Smartcat Positions', 'smartcat-modules' ),
+            __( 'Smartcat Work History', 'smartcat-modules' ),
             array(
                 'classname'   => 'scmod-positions',
                 'description' => __( 'Display the Positions you have held as part of your work history', 'smartcat-modules' ),
