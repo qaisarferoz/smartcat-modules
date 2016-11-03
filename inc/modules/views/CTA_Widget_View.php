@@ -5,7 +5,7 @@
     </h2>
 
     <div class="detail">
-        <?php echo !empty( $instance['scmod_cta_detail'] ) ? esc_html( $instance['scmod_cta_detail'] ) : ''; ?>
+        <?php echo !empty( $instance['scmod_cta_detail'] ) ? $instance['scmod_cta_detail'] : ''; ?>
     </div>
     
     <div class="buttons">

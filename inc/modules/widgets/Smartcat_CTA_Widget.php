@@ -18,9 +18,9 @@ class Smartcat_CTA_Widget extends WP_Widget {
     public function widget( $args, $instance ) { 
 
         if ( file_exists( get_template_directory() . '/smartcat-modules/views/CTA_Widget_View.php') ) : 
-            include_once get_template_directory() . '/smartcat-modules/views/CTA_Widget_View.php' ;
+            include get_template_directory() . '/smartcat-modules/views/CTA_Widget_View.php' ;
         else :
-            include_once SMARTCAT_MODULES_PATH . 'inc/modules/views/CTA_Widget_View.php';
+            include SMARTCAT_MODULES_PATH . 'inc/modules/views/CTA_Widget_View.php';
         endif;
             
     }
@@ -70,10 +70,10 @@ class Smartcat_CTA_Widget extends WP_Widget {
         echo '	</select>';
         echo '</p>';
 
-        // Detail Text - Text
+        // Detail Text - TextArea
         echo '<p>';
         echo '	<label for="' . $this->get_field_id( 'scmod_cta_detail' ) . '" class="scmod_cta_detail_label">' . __( 'Detail Text', 'smartcat-modules' ) . '</label>';
-        echo '	<input type="text" id="' . $this->get_field_id( 'scmod_cta_detail' ) . '" name="' . $this->get_field_name( 'scmod_cta_detail' ) . '" class="widefat" placeholder="' . esc_attr__( '', 'smartcat-modules' ) . '" value="' . esc_attr( $scmod_cta_detail ) . '">';
+        echo '	<textarea id="' . $this->get_field_id( 'scmod_cta_detail' ) . '" name="' . $this->get_field_name( 'scmod_cta_detail' ) . '" class="widefat" placeholder="' . esc_attr__( '', 'smartcat-modules' ) . '">' . $scmod_cta_detail . '</textarea>';
         echo '</p>';
         
         // Button 1 - Text
@@ -108,7 +108,7 @@ class Smartcat_CTA_Widget extends WP_Widget {
 
         $instance['scmod_cta_title']        = !empty( $new_instance['scmod_cta_title'] ) ? strip_tags( $new_instance['scmod_cta_title'] ) : '';
         $instance['scmod_cta_widget_width'] = !empty( $new_instance['scmod_cta_widget_width'] ) ? strip_tags( $new_instance['scmod_cta_widget_width'] ) : '12';
-        $instance['scmod_cta_detail']       = !empty( $new_instance['scmod_cta_detail'] ) ? strip_tags( $new_instance['scmod_cta_detail'] ) : '';
+        $instance['scmod_cta_detail']       = !empty( $new_instance['scmod_cta_detail'] ) ? $new_instance['scmod_cta_detail'] : '';
         $instance['scmod_cta_btn_1_text']   = !empty( $new_instance['scmod_cta_btn_1_text'] ) ? strip_tags( $new_instance['scmod_cta_btn_1_text'] ) : '';
         $instance['scmod_cta_btn_1_url']    = !empty( $new_instance['scmod_cta_btn_1_url'] ) ? strip_tags( $new_instance['scmod_cta_btn_1_url'] ) : '';
         $instance['scmod_cta_btn_2_text']   = !empty( $new_instance['scmod_cta_btn_2_text'] ) ? strip_tags( $new_instance['scmod_cta_btn_2_text'] ) : '';

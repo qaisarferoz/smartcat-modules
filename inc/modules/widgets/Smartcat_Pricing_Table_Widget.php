@@ -18,9 +18,9 @@ class Smartcat_Pricing_Table_Widget extends WP_Widget {
     public function widget( $args, $instance ) { 
 
         if ( file_exists( get_template_directory() . '/smartcat-modules/views/Pricing_Table_Widget_View.php') ) : 
-            include_once get_template_directory() . '/smartcat-modules/views/Pricing_Table_Widget_View.php' ;
+            include get_template_directory() . '/smartcat-modules/views/Pricing_Table_Widget_View.php' ;
         else :
-            include_once SMARTCAT_MODULES_PATH . 'inc/modules/views/Pricing_Table_Widget_View.php';
+            include SMARTCAT_MODULES_PATH . 'inc/modules/views/Pricing_Table_Widget_View.php';
         endif;
 
     }

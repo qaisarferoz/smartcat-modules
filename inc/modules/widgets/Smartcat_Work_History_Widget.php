@@ -18,9 +18,9 @@ class Smartcat_Work_History_Widget extends WP_Widget {
     public function widget( $args, $instance ) {
 
         if ( file_exists( get_template_directory() . '/smartcat-modules/views/Work_History_Widget_View.php') ) : 
-            include_once get_template_directory() . '/smartcat-modules/views/Work_History_Widget_View.php' ;
+            include get_template_directory() . '/smartcat-modules/views/Work_History_Widget_View.php' ;
         else :
-            include_once SMARTCAT_MODULES_PATH . 'inc/modules/views/Work_History_Widget_View.php';
+            include SMARTCAT_MODULES_PATH . 'inc/modules/views/Work_History_Widget_View.php';
         endif;
         
     }
@@ -34,7 +34,7 @@ class Smartcat_Work_History_Widget extends WP_Widget {
        
         // Set default values
         $instance = wp_parse_args( (array) $instance, array( 
-            'scmod_positions_title'          => __( 'Projects', 'smartcat-modules'),
+            'scmod_positions_title'          => __( 'Work History', 'smartcat-modules'),
             'scmod_positions_widget_width'   => '12',
             'scmod_positions_limit'          => '-1',
         ) );

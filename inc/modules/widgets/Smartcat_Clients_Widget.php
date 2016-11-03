@@ -18,9 +18,9 @@ class Smartcat_Clients_Widget extends WP_Widget {
     public function widget( $args, $instance ) {
 
         if ( file_exists( get_template_directory() . '/smartcat-modules/views/Clients_Widget_View.php') ) : 
-            include_once get_template_directory() . '/smartcat-modules/views/Clients_Widget_View.php' ;
+            include get_template_directory() . '/smartcat-modules/views/Clients_Widget_View.php' ;
         else :
-            include_once SMARTCAT_MODULES_PATH . 'inc/modules/views/Clients_Widget_View.php';
+            include SMARTCAT_MODULES_PATH . 'inc/modules/views/Clients_Widget_View.php';
         endif;
         
     }
@@ -28,6 +28,8 @@ class Smartcat_Clients_Widget extends WP_Widget {
     public function form( $instance ) {
 
         $widths = array(
+            '3'     => '1/4',
+            '4'     => '1/3',
             '6'     => '1/2',
             '12'    => __( 'Full', 'smartcat-modules' ),
         );
