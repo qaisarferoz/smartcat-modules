@@ -135,6 +135,7 @@ class SmartcatModulesLoader {
         register_widget( 'Smartcat_Contact_Form_Widget' );
         register_widget( 'Smartcat_Contact_Info_Widget' );
         register_widget( 'Smartcat_Pricing_Table_Widget' );
+        register_widget( 'Smartcat_New_Row_Widget' );
         
         // Register remaining CPT Widgets (if enabled)
         
@@ -217,6 +218,7 @@ class SmartcatModulesLoader {
             #available-widgets [class*="smartcat-module-faqs"] .widget-title h3,
             #available-widgets [class*="smartcat-module-gallery"] .widget-title h3,
             #available-widgets [class*="smartcat-module-news"] .widget-title h3,
+            #available-widgets [class*="smartcat-module-new-row"] .widget-title h3,
             #available-widgets [class*="smartcat-module-pricing-table"] .widget-title h3,
             #available-widgets [class*="smartcat-module-projects"] .widget-title h3,
             #available-widgets [class*="smartcat-module-testimonials"] .widget-title h3,
@@ -265,6 +267,11 @@ class SmartcatModulesLoader {
             #available-widgets [class*="smartcat-module-gallery"] .widget-title:before {
                 color: #16a6d8;
                 content: '\f161' !important; 
+            }
+            
+            /* New Row */
+            #available-widgets [class*="smartcat-module-new-row"] .widget-title:before {
+                color: #16a6d8;
             }
             
             /* News */
