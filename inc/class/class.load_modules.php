@@ -38,7 +38,6 @@ class SmartcatModulesLoader {
         add_action('wp_ajax_scmod_send_message', array( $this, 'scmod_send_message' ) );
         add_action('wp_ajax_nopriv_scmod_send_message', array( $this, 'scmod_send_message' ) );
         
-        
     }
 
     /**
@@ -101,6 +100,13 @@ class SmartcatModulesLoader {
             
             if ( in_array( 'testimonial', $this->modules ) ) :
                 include_once SMARTCAT_MODULES_PATH . 'inc/modules/cpt_testimonial.php';
+            endif;
+            
+            // If the Rewrite Flag is false (first time creating the post types), 
+            // then flush the rewrite rules to refresh permalinks and set flag true
+            if ( !get_option( 'smartcat_modules_rewrite_rules_flag' ) ) :
+                flush_rewrite_rules();
+                update_option( 'smartcat_modules_rewrite_rules_flag', true );               
             endif;
             
             // Register the Widgets
