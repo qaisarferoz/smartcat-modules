@@ -42,15 +42,19 @@ class Smartcat_Pricing_Table_Widget extends WP_Widget {
             'scmod_pricing_table_is_special'    => '',
             'scmod_pricing_table_price'         => '',
             'scmod_pricing_table_description'   => '',
+            'scmod_pricing_table_url'           => '',
+            'scmod_pricing_table_button_label'  => '',
         ) );
 
         // Retrieve an existing value from the database
-        $scmod_pricing_table_title       = !empty( $instance['scmod_pricing_table_title'] ) ? $instance['scmod_pricing_table_title'] : '';
-        $scmod_pricing_table_width       = !empty( $instance['scmod_pricing_table_width'] ) ? $instance['scmod_pricing_table_width'] : '4';
-        $scmod_pricing_table_detail      = !empty( $instance['scmod_pricing_table_detail'] ) ? $instance['scmod_pricing_table_detail'] : '';
-        $scmod_pricing_table_is_special  = !empty( $instance['scmod_pricing_table_is_special'] ) ? $instance['scmod_pricing_table_is_special'] : '';
-        $scmod_pricing_table_price       = !empty( $instance['scmod_pricing_table_price'] ) ? $instance['scmod_pricing_table_price'] : '';
-        $scmod_pricing_table_description = !empty( $instance['scmod_pricing_table_description'] ) ? $instance['scmod_pricing_table_description'] : '';
+        $scmod_pricing_table_title          = !empty( $instance['scmod_pricing_table_title'] ) ? $instance['scmod_pricing_table_title'] : '';
+        $scmod_pricing_table_width          = !empty( $instance['scmod_pricing_table_width'] ) ? $instance['scmod_pricing_table_width'] : '4';
+        $scmod_pricing_table_detail         = !empty( $instance['scmod_pricing_table_detail'] ) ? $instance['scmod_pricing_table_detail'] : '';
+        $scmod_pricing_table_is_special     = !empty( $instance['scmod_pricing_table_is_special'] ) ? $instance['scmod_pricing_table_is_special'] : '';
+        $scmod_pricing_table_price          = !empty( $instance['scmod_pricing_table_price'] ) ? $instance['scmod_pricing_table_price'] : '';
+        $scmod_pricing_table_description    = !empty( $instance['scmod_pricing_table_description'] ) ? $instance['scmod_pricing_table_description'] : '';
+        $scmod_pricing_table_url            = !empty( $instance['scmod_pricing_table_url'] ) ? $instance['scmod_pricing_table_url'] : '';
+        $scmod_pricing_table_button_label   = !empty( $instance['scmod_pricing_table_button_label'] ) ? $instance['scmod_pricing_table_button_label'] : '';
         
         // Title - Text
         echo '<p>';
@@ -93,6 +97,18 @@ class Smartcat_Pricing_Table_Widget extends WP_Widget {
         echo '	<textarea id="' . $this->get_field_id( 'scmod_pricing_table_description' ) . '" name="' . $this->get_field_name( 'scmod_pricing_table_description' ) . '" class="widefat" placeholder="' . esc_attr__( '', 'smartcat-modules' ) . '">' . $scmod_pricing_table_description . '</textarea>';
         echo '</p>';
 
+        // Button URL
+        echo '<p>';
+        echo '	<label for="' . $this->get_field_id( 'scmod_pricing_table_url' ) . '" class="scmod_pricing_table_url_label">' . __( 'Button - URL', 'smartcat-modules' ) . '</label>';
+        echo '	<input type="url" id="' . $this->get_field_id( 'scmod_pricing_table_url' ) . '" name="' . $this->get_field_name( 'scmod_pricing_table_url' ) . '" class="widefat" placeholder="' . esc_attr__( '', 'smartcat-modules' ) . '" value="' . esc_attr( $scmod_pricing_table_url ) . '">';
+        echo '</p>';
+        
+        // Button Label
+        echo '<p>';
+        echo '	<label for="' . $this->get_field_id( 'scmod_pricing_table_button_label' ) . '" class="scmod_pricing_table_button_label_label">' . __( 'Button - Text', 'smartcat-modules' ) . '</label>';
+        echo '	<input type="text" id="' . $this->get_field_id( 'scmod_pricing_table_button_label' ) . '" name="' . $this->get_field_name( 'scmod_pricing_table_button_label' ) . '" class="widefat" placeholder="' . esc_attr__( '', 'smartcat-modules' ) . '" value="' . esc_attr( $scmod_pricing_table_button_label ) . '">';
+        echo '</p>';
+        
     }
 
     public function update( $new_instance, $old_instance ) {
@@ -105,6 +121,8 @@ class Smartcat_Pricing_Table_Widget extends WP_Widget {
         $instance['scmod_pricing_table_is_special']   = !empty( $new_instance['scmod_pricing_table_is_special'] ) ? strip_tags( $new_instance['scmod_pricing_table_is_special'] ) : '';
         $instance['scmod_pricing_table_price']   = !empty( $new_instance['scmod_pricing_table_price'] ) ? strip_tags( $new_instance['scmod_pricing_table_price'] ) : '';
         $instance['scmod_pricing_table_description'] = !empty( $new_instance['scmod_pricing_table_description'] ) ? strip_tags( $new_instance['scmod_pricing_table_description'] ) : '';
+        $instance['scmod_pricing_table_url'] = !empty( $new_instance['scmod_pricing_table_url'] ) ? strip_tags( $new_instance['scmod_pricing_table_url'] ) : '';
+        $instance['scmod_pricing_table_button_label'] = !empty( $new_instance['scmod_pricing_table_button_label'] ) ? strip_tags( $new_instance['scmod_pricing_table_button_label'] ) : '';
         
         return $instance;
         
