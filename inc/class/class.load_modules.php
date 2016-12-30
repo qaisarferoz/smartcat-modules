@@ -38,7 +38,6 @@ class SmartcatModulesLoader {
         add_action('wp_ajax_scmod_send_message', array( $this, 'scmod_send_message' ) );
         add_action('wp_ajax_nopriv_scmod_send_message', array( $this, 'scmod_send_message' ) );
         
-        
     }
 
     /**
@@ -103,6 +102,13 @@ class SmartcatModulesLoader {
                 include_once SMARTCAT_MODULES_PATH . 'inc/modules/cpt_testimonial.php';
             endif;
             
+            // If the Rewrite Flag is false (first time creating the post types), 
+            // then flush the rewrite rules to refresh permalinks and set flag true
+            if ( !get_option( 'smartcat_modules_rewrite_rules_flag' ) ) :
+                flush_rewrite_rules();
+                update_option( 'smartcat_modules_rewrite_rules_flag', true );               
+            endif;
+            
             // Register the Widgets
             add_action( 'widgets_init', array( $this, 'register_widgets' ) );
             
@@ -129,6 +135,7 @@ class SmartcatModulesLoader {
         register_widget( 'Smartcat_Contact_Form_Widget' );
         register_widget( 'Smartcat_Contact_Info_Widget' );
         register_widget( 'Smartcat_Pricing_Table_Widget' );
+        register_widget( 'Smartcat_New_Row_Widget' );
         
         // Register remaining CPT Widgets (if enabled)
         
@@ -211,6 +218,7 @@ class SmartcatModulesLoader {
             #available-widgets [class*="smartcat-module-faqs"] .widget-title h3,
             #available-widgets [class*="smartcat-module-gallery"] .widget-title h3,
             #available-widgets [class*="smartcat-module-news"] .widget-title h3,
+            #available-widgets [class*="smartcat-module-new-row"] .widget-title h3,
             #available-widgets [class*="smartcat-module-pricing-table"] .widget-title h3,
             #available-widgets [class*="smartcat-module-projects"] .widget-title h3,
             #available-widgets [class*="smartcat-module-testimonials"] .widget-title h3,
@@ -259,6 +267,11 @@ class SmartcatModulesLoader {
             #available-widgets [class*="smartcat-module-gallery"] .widget-title:before {
                 color: #16a6d8;
                 content: '\f161' !important; 
+            }
+            
+            /* New Row */
+            #available-widgets [class*="smartcat-module-new-row"] .widget-title:before {
+                color: #16a6d8;
             }
             
             /* News */

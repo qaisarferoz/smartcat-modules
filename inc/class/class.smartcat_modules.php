@@ -24,7 +24,7 @@ class SmartcatModulesPlugin {
             self::$instance->get_options();
             self::$instance->add_hooks();
             self::$instance->setup_modules();
-
+            
         endif;
 
     }
@@ -37,6 +37,9 @@ class SmartcatModulesPlugin {
      */
     public static function activate() {
 
+        // Reset the Rewrite Flag to false (CPTs not yet created)
+        update_option( 'smartcat_modules_rewrite_rules_flag', false );
+        
         // Declare $options array
         $options = array (
 
@@ -145,7 +148,7 @@ class SmartcatModulesPlugin {
         if ( !is_null( $this->modules ) ) :
         
             // Add the Main "Modules" menu item
-            add_menu_page( 'Modules', 'Modules', 'manage_options', 'modules', array( $this, 'display_main_plugin_view' ), 'dashicons-layout' );
+            add_menu_page( 'Modules', 'Modules', 'manage_options', 'modules', array( $this, 'display_main_plugin_view' ), 'dashicons-layout', 10 );
 
             // Add all of the appropriate CPT module menu items that are enabled through Customizer
 
