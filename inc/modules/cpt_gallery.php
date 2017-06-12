@@ -54,3 +54,40 @@ $args = array (
 );
 
 register_post_type( 'gallery', $args );
+
+// Register Gallery Group Taxonomy
+$labels = array(
+    'name'                       => _x( 'Gallery Groups', 'Taxonomy General Name', 'smartcat-modules' ),
+    'singular_name'              => _x( 'Gallery Group', 'Taxonomy Singular Name', 'smartcat-modules' ),
+    'menu_name'                  => __( 'Gallery Group', 'smartcat-modules' ),
+    'all_items'                  => __( 'All Gallery Groups', 'smartcat-modules' ),
+    'parent_item'                => __( 'Parent Gallery Group', 'smartcat-modules' ),
+    'parent_item_colon'          => __( 'Parent Gallery Group:', 'smartcat-modules' ),
+    'new_item_name'              => __( 'New Gallery Group Name', 'smartcat-modules' ),
+    'add_new_item'               => __( 'Add New Gallery Group', 'smartcat-modules' ),
+    'edit_item'                  => __( 'Edit Gallery Group', 'smartcat-modules' ),
+    'update_item'                => __( 'Update Gallery Group', 'smartcat-modules' ),
+    'view_item'                  => __( 'View Gallery Group', 'smartcat-modules' ),
+    'separate_items_with_commas' => __( 'Separate Gallery Group with commas', 'smartcat-modules' ),
+    'add_or_remove_items'        => __( 'Add or remove Gallery Group', 'smartcat-modules' ),
+    'choose_from_most_used'      => __( 'Choose from the most used', 'smartcat-modules' ),
+    'popular_items'              => __( 'Popular Gallery Groups', 'smartcat-modules' ),
+    'search_items'               => __( 'Search Gallery Groups', 'smartcat-modules' ),
+    'not_found'                  => __( 'Not Found', 'smartcat-modules' ),
+    'no_terms'                   => __( 'No Gallery Groups', 'smartcat-modules' ),
+    'items_list'                 => __( 'Gallery Group list', 'smartcat-modules' ),
+    'items_list_navigation'      => __( 'Gallery Group list navigation', 'smartcat-modules' ),
+);
+
+$args = array(
+    'labels'                     => $labels,
+    'hierarchical'               => true,
+    'public'                     => true,
+    'show_ui'                    => true,
+    'show_admin_column'          => true,
+    'show_in_nav_menus'          => true,
+    'show_tagcloud'              => false,
+    'rewrite'                    => false,
+);
+
+register_taxonomy( 'gallery_group', array( 'gallery' ), $args );
