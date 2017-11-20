@@ -3,8 +3,8 @@ Contributors: smartcat
 Donate link: https://smartcatdesign.net
 Tags: 
 Requires at least: 4.3
-Tested up to: 4.5.3
-Stable tag: 1.0.1
+Tested up to: 4.9.0
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -27,4 +27,6 @@ Smartcat Module ...
 
 = 1.0.0 = Initial Release
 
-= 1.0.1 = Added Gallery Groups
+= 1.1.0 = 
+- Added Gallery Groups
+- New Row widgets can now add an optional Spacer value in pixels

@@ -3,7 +3,7 @@
  * Plugin Name: Smartcat Modules
  * Plugin URI: http://smartcatdesign.net/
  * Description: Smartcat Modules adds custom widgets and post types to your website.
- * Version: 1.0.1
+ * Version: 1.1.0
  * Author: Smartcat
  * Author URI: https://smartcatdesign.net
  * License: GPL v2
