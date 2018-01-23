@@ -42,7 +42,29 @@ class Smartcat_Gallery_Widget extends WP_Widget {
             'justified' => __( 'Justified', 'smartcat-modules' ),
             'nested'    => __( 'Nested', 'smartcat-modules' ),
         );
-       
+        
+        // Get all user defined Gallery Groups
+        $taxonomy_groups = get_terms( array(
+            'taxonomy'      => 'gallery_group',
+            'hide_empty'    => false,
+        ) );
+        
+        // Start an array with a default of All Gallery Items
+        $groups = array(
+            'all' => __( 'All Gallery Items', 'smartcat-modules'),
+        );
+        
+        // Add any user defined Gallery Groups to the starting array
+        if ( !empty ( $taxonomy_groups ) && is_array( $taxonomy_groups ) ) :
+
+            foreach ( $taxonomy_groups as $tax_group ) :
+
+                $groups[ $tax_group->slug ] = $tax_group->name;
+
+            endforeach;
+        
+        endif;
+        
         // Set default values
         $instance = wp_parse_args( (array) $instance, array( 
             'scmod_gallery_title'           => __( 'Gallery', 'smartcat-modules'),
@@ -50,6 +72,7 @@ class Smartcat_Gallery_Widget extends WP_Widget {
             'scmod_gallery_tile_style'      => 'columns',
             'scmod_gallery_limit'           => '-1',
             'scmod_gallery_shuffle'         => 'normal',
+            'scmod_gallery_group'           => 'all',
         ) );
 
         // Retrieve an existing value from the database
@@ -58,6 +81,7 @@ class Smartcat_Gallery_Widget extends WP_Widget {
         $scmod_gallery_tile_style   = !empty( $instance['scmod_gallery_tile_style'] ) ? $instance['scmod_gallery_tile_style'] : 'columns';
         $scmod_gallery_limit        = !empty( $instance['scmod_gallery_limit'] ) ? $instance['scmod_gallery_limit'] : '-1';
         $scmod_gallery_shuffle      = !empty( $instance['scmod_gallery_shuffle'] ) ? $instance['scmod_gallery_shuffle'] : '-1';
+        $scmod_gallery_group        = !empty( $instance['scmod_gallery_group'] ) ? $instance['scmod_gallery_group'] : 'all';
         
         // Title - Text
         echo '<p>';
@@ -71,6 +95,16 @@ class Smartcat_Gallery_Widget extends WP_Widget {
         echo '	<select id="' . $this->get_field_id( 'scmod_gallery_widget_width' ) . '" name="' . $this->get_field_name( 'scmod_gallery_widget_width' ) . '" class="widefat">';
             foreach( $widths as $key => $value ) :
                 echo '<option value="' . $key . '" ' . selected( $scmod_gallery_widget_width, $key, false ) . '> ' . $value . '</option>';
+            endforeach;
+        echo '	</select>';
+        echo '</p>';
+
+        // Show All or Specific Group of Galery Items?
+        echo '<p>';
+        echo '	<label for="' . $this->get_field_id( 'scmod_gallery_group' ) . '" class="scmod_gallery_group_label">' . __( 'Show All or Specific Gallery Group?', 'smartcat-modules' ) . '</label>';
+        echo '	<select id="' . $this->get_field_id( 'scmod_gallery_group' ) . '" name="' . $this->get_field_name( 'scmod_gallery_group' ) . '" class="widefat">';
+            foreach( $groups as $key => $value ) :
+                echo '<option value="' . $key . '" ' . selected( $scmod_gallery_group, $key, false ) . '> ' . $value . '</option>';
             endforeach;
         echo '	</select>';
         echo '</p>';
@@ -112,6 +146,7 @@ class Smartcat_Gallery_Widget extends WP_Widget {
         $instance['scmod_gallery_tile_style']       = !empty( $new_instance['scmod_gallery_tile_style'] ) ? strip_tags( $new_instance['scmod_gallery_tile_style'] ) : 'columns';
         $instance['scmod_gallery_limit']            = !empty( $new_instance['scmod_gallery_limit'] ) ? strip_tags( $new_instance['scmod_gallery_limit'] ) : '-1';
         $instance['scmod_gallery_shuffle']          = !empty( $new_instance['scmod_gallery_shuffle'] ) ? strip_tags( $new_instance['scmod_gallery_shuffle'] ) : 'normal';
+        $instance['scmod_gallery_group']            = !empty( $new_instance['scmod_gallery_group'] ) ? strip_tags( $new_instance['scmod_gallery_group'] ) : 'all';
 
         return $instance;
         

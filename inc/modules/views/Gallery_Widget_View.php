@@ -6,6 +6,18 @@ $args = array (
     'post_type'     => 'gallery'
 );
 
+if( !empty( $instance['scmod_gallery_group'] ) && $instance['scmod_gallery_group'] != 'all' ) :
+        
+    $args['tax_query'] = array(
+        array(
+            'taxonomy'  =>  'gallery_group',
+            'field'     => 'slug',
+            'terms'     => array( $instance['scmod_gallery_group'] ),
+        )
+    );
+
+endif;
+
 $gallery = wp_get_recent_posts( $args );
 $gallery_style = empty( $instance['scmod_gallery_shuffle'] ) || $instance['scmod_gallery_shuffle'] == 'normal' ? 'normal' : 'shuffle';
 
